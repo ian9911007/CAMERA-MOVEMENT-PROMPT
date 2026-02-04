@@ -58,6 +58,14 @@
         input[type=range].active-blue::-webkit-slider-thumb { background: #fff; border-color: #60a5fa; box-shadow: 0 0 10px #60a5fa, 0 0 20px #60a5fa; }
         input[type=range].active-blue::-webkit-slider-runnable-track { background: #1e40af; }
 
+        /* NEW COLORS for Focal & Pan */
+        input[type=range].active-orange::-webkit-slider-thumb { background: #fff; border-color: #f97316; box-shadow: 0 0 10px #f97316, 0 0 20px #f97316; }
+        input[type=range].active-orange::-webkit-slider-runnable-track { background: #c2410c; }
+
+        input[type=range].active-indigo::-webkit-slider-thumb { background: #fff; border-color: #6366f1; box-shadow: 0 0 10px #6366f1, 0 0 20px #6366f1; }
+        input[type=range].active-indigo::-webkit-slider-runnable-track { background: #4338ca; }
+
+
         /* UI Elements */
         .tick-marks { display: flex; justify-content: space-between; height: 4px; margin-top: 6px; padding: 0 6px; }
         .tick { width: 1px; height: 4px; background-color: #444; }
@@ -202,7 +210,7 @@
                 <!-- 4. Distance (Emerald) -->
                 <div>
                     <div class="flex justify-between mb-2 items-end">
-                        <label class="text-[11px] font-medium text-gray-400">Distance</label>
+                        <label class="text-[11px] font-medium text-gray-400">Shot Distance</label>
                         <span class="text-[10px] font-mono transition-colors duration-300" :class="params.distanceIndex !== 6 ? 'text-emerald-400 font-bold' : 'text-gray-600'">{{ distanceLevels[params.distanceIndex].label }}</span>
                     </div>
                     <div class="relative h-6">
@@ -211,27 +219,51 @@
                     </div>
                 </div>
 
-                 <!-- Tilt & Roll Group -->
-                 <div class="grid grid-cols-2 gap-4">
-                    <!-- 5. Tilt (Rose) -->
+                <!-- 5. Camera Motion Group: Pan | Tilt | Roll -->
+                 <div class="grid grid-cols-3 gap-3">
+                    <!-- Pan (Indigo) -->
                     <div>
                         <div class="flex justify-between mb-2 items-end">
-                            <label class="text-[11px] font-medium text-gray-400">Tilt</label>
-                            <span class="text-[10px] font-mono transition-colors duration-300" :class="params.tilt !== 0 ? 'text-rose-400 font-bold' : 'text-gray-600'">{{ params.tilt === 0 ? 'LEVEL' : (params.tilt > 0 ? 'UP' : 'DWN') }}</span>
+                            <label class="text-[10px] font-medium text-gray-400">Pan</label>
+                            <span class="text-[9px] font-mono transition-colors duration-300" :class="params.pan !== 0 ? 'text-indigo-400 font-bold' : 'text-gray-600'">{{ params.pan === 0 ? '0' : (params.pan === -1 ? 'L' : 'R') }}</span>
+                        </div>
+                        <input type="range" v-model.number="params.pan" min="-1" max="1" step="1"
+                               :class="params.pan !== 0 ? 'active-indigo' : ''">
+                    </div>
+                    <!-- Tilt (Rose) -->
+                    <div>
+                        <div class="flex justify-between mb-2 items-end">
+                            <label class="text-[10px] font-medium text-gray-400">Tilt</label>
+                            <span class="text-[9px] font-mono transition-colors duration-300" :class="params.tilt !== 0 ? 'text-rose-400 font-bold' : 'text-gray-600'">{{ params.tilt === 0 ? '0' : (params.tilt > 0 ? 'UP' : 'DN') }}</span>
                         </div>
                         <input type="range" v-model.number="params.tilt" min="-1" max="1" step="1"
                                :class="params.tilt !== 0 ? 'active-rose' : ''">
                     </div>
-                     <!-- 6. Roll (Fuchsia) -->
+                     <!-- Roll (Fuchsia) -->
                      <div>
                         <div class="flex justify-between mb-2 items-end">
-                            <label class="text-[11px] font-medium text-gray-400">Roll</label>
-                            <span class="text-[10px] font-mono transition-colors duration-300" :class="params.roll !== 0 ? 'text-fuchsia-400 font-bold' : 'text-gray-600'">{{ params.roll === 0 ? 'LEVEL' : 'DUTCH' }}</span>
+                            <label class="text-[10px] font-medium text-gray-400">Roll</label>
+                            <span class="text-[9px] font-mono transition-colors duration-300" :class="params.roll !== 0 ? 'text-fuchsia-400 font-bold' : 'text-gray-600'">{{ params.roll === 0 ? '0' : 'DT' }}</span>
                         </div>
                         <input type="range" v-model.number="params.roll" min="-45" max="45" step="45"
                                :class="params.roll !== 0 ? 'active-fuchsia' : ''">
                     </div>
                  </div>
+
+                <!-- 6. Focal Length (Orange) -->
+                <div>
+                    <div class="flex justify-between mb-2 items-end">
+                        <label class="text-[11px] font-medium text-gray-400">Focal Length (Zoom)</label>
+                        <span class="text-[10px] font-mono transition-colors duration-300" :class="params.focalIndex !== 0 ? 'text-orange-500 font-bold' : 'text-gray-600'">{{ getFocalLabel() }}</span>
+                    </div>
+                    <div class="relative h-6">
+                        <input type="range" v-model.number="params.focalIndex" min="0" :max="focalSteps.length - 1" step="1"
+                               :class="params.focalIndex !== 0 ? 'active-orange' : ''">
+                         <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
+                            <span>WIDE</span><span>STD</span><span>TELE</span>
+                        </div>
+                    </div>
+                </div>
 
                 <!-- 7. Subject Rotation (Blue) -->
                 <div>
@@ -307,6 +339,7 @@
 
             // --- DATA DEFINITIONS ---
             const horizontalSteps = [-180, -135, -90, -60, -45, -30, 0, 30, 45, 60, 90, 135, 180];
+            const focalSteps = [0, 6, 8, 11, 12, 13, 14, 16, 20, 24, 28, 35, 50, 85, 100, 135, 200, 300, 400, 500, 600, 800, 1200, 2000];
 
             const distanceLevels = [
                 { label: "Probe Lens", prompt: "Probe Lens", radius: 0.5, parallax: "[Parallax]: Background extremely blurred with intense bokeh due to macro depth of field." },
@@ -346,6 +379,8 @@
                 angleIndex: 3,
                 heightIndex: 0,
                 distanceIndex: 6,
+                focalIndex: 0, // Default Off
+                pan: 0, // -1 Left, 0 Off, 1 Right
                 tilt: 0,
                 roll: 0,
                 subjectRot: 0
@@ -363,6 +398,8 @@
                     angleIndex: 3,
                     heightIndex: 0,
                     distanceIndex: 6,
+                    focalIndex: 0,
+                    pan: 0,
                     tilt: 0,
                     roll: 0,
                     subjectRot: 0
@@ -404,7 +441,7 @@
 
             const getAnglePrompt = () => {
                 const idx = params.value.angleIndex;
-                if (idx === 3) return ""; // Default Level
+                if (idx === 3) return "";
                 const data = angleLevels[idx];
                 return `Adjust camera angle to ${data.prompt}. ${data.parallax}`;
             };
@@ -420,6 +457,29 @@
                 if (idx === 6) return ""; 
                 const data = distanceLevels[idx];
                 return `Change shot size to ${data.prompt}. ${data.parallax}`;
+            };
+
+            const getFocalLabel = () => {
+                const fl = focalSteps[params.value.focalIndex];
+                if(fl === 0) return "DEFAULT";
+                return `${fl}mm`;
+            };
+
+            const getFocalPrompt = () => {
+                const fl = focalSteps[params.value.focalIndex];
+                if(fl === 0) return "";
+                if(fl <= 16) return `Shot on ${fl}mm Ultra-Wide Fisheye lens. [Visual]: Extreme barrel distortion, exaggerated perspective depth.`;
+                if(fl <= 35) return `Shot on ${fl}mm Wide Angle lens. [Visual]: Expanded field of view, dynamic perspective.`;
+                if(fl <= 50) return `Shot on ${fl}mm Standard lens. [Visual]: Natural human eye perspective, minimal distortion.`;
+                if(fl <= 100) return `Shot on ${fl}mm Portrait Telephoto lens. [Visual]: Flattering compression, subject isolation, soft bokeh.`;
+                if(fl <= 2000) return `Shot on ${fl}mm Super Telephoto lens. [Visual]: Extreme background compression, flat perspective, subject pulled close to background.`;
+                return "";
+            };
+
+            const getPanPrompt = () => {
+                if(params.value.pan === -1) return "Camera Pans Left. [Motion]: View sweeps left, revealing scene to the left.";
+                if(params.value.pan === 1) return "Camera Pans Right. [Motion]: View sweeps right, revealing scene to the right.";
+                return "";
             };
 
             const getRollPrompt = () => params.value.roll !== 0 ? "Apply a Dutch Angle tilt. [Parallax]: Horizon line tilts diagonally matching the roll angle." : "";
@@ -440,7 +500,9 @@
                 const p_hor = getHorizontalPrompt();
                 const p_ang = getAnglePrompt();
                 const p_hgt = getHeightPrompt();
+                const p_foc = getFocalPrompt();
                 const p_dist = getDistancePrompt();
+                const p_pan = getPanPrompt();
                 const p_roll = getRollPrompt();
                 const p_tilt = getTiltPrompt();
                 const p_sub = getSubjectRotPrompt();
@@ -448,9 +510,11 @@
                 if (p_hor) commands.push(p_hor);
                 if (p_ang) commands.push(p_ang);
                 if (p_hgt) commands.push(p_hgt);
-                if (p_dist) commands.push(p_dist);
+                if (p_pan) commands.push(p_pan); // Pan should be prioritized as motion
                 if (p_roll) commands.push(p_roll);
                 if (p_tilt) commands.push(p_tilt);
+                if (p_foc) commands.push(p_foc);
+                if (p_dist) commands.push(p_dist);
                 if (p_sub) commands.push(p_sub);
 
                 if (commands.length === 0) return "";
@@ -473,9 +537,9 @@
             // Accumulators for snapping logic
             let dragAccumulatorX = 0;
             let dragAccumulatorY = 0;
-            const SNAP_THRESHOLD_X = 30; // pixels to snap horizontal
-            const SNAP_THRESHOLD_Y = 30; // pixels to snap vertical
-            const SNAP_THRESHOLD_ROT = 40; // pixels for subject rotation
+            const SNAP_THRESHOLD_X = 30; 
+            const SNAP_THRESHOLD_Y = 30; 
+            const SNAP_THRESHOLD_ROT = 40; 
 
             // --- Setup Helpers ---
             const handleImageUpload = (e) => { const file = e.target.files[0]; if(file) processFile(file); };
@@ -490,8 +554,8 @@
                 const lines = new THREE.LineSegments(edges, lineMat);
                 mesh.add(lines);
             };
-            const createMasterMiniCamera = () => { /* ... same as before ... */ const grp = new THREE.Group(); const body = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.12, 0.15), new THREE.MeshStandardMaterial({color:0x111111})); addGlowOutline(body, 0x00ffff); grp.add(body); const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.1, 16), new THREE.MeshStandardMaterial({color:0x000000})); lens.rotateX(Math.PI/2); lens.position.z = 0.11; addGlowOutline(lens, 0x00ffff); grp.add(lens); return grp; };
-            const createCameraModel = () => { /* ... same as before ... */ const grp = new THREE.Group(); const body = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.35, 0.5), new THREE.MeshStandardMaterial({color:0x1a1a1a})); addGlowOutline(body, 0x00ffff); grp.add(body); const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.3, 32), new THREE.MeshStandardMaterial({color:0x050505})); lens.rotateX(Math.PI/2); lens.position.z = 0.35; addGlowOutline(lens, 0x00ffff); grp.add(lens); const hit = new THREE.Mesh(new THREE.SphereGeometry(0.6), new THREE.MeshBasicMaterial({visible:false})); hit.userData = {isCamera:true}; grp.add(hit); cameraRigGroup.add(grp); cameraModel = grp; };
+            const createMasterMiniCamera = () => { const grp = new THREE.Group(); const body = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.12, 0.15), new THREE.MeshStandardMaterial({color:0x111111})); addGlowOutline(body, 0x00ffff); grp.add(body); const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.1, 16), new THREE.MeshStandardMaterial({color:0x000000})); lens.rotateX(Math.PI/2); lens.position.z = 0.11; addGlowOutline(lens, 0x00ffff); grp.add(lens); return grp; };
+            const createCameraModel = () => { const grp = new THREE.Group(); const body = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.35, 0.5), new THREE.MeshStandardMaterial({color:0x1a1a1a})); addGlowOutline(body, 0x00ffff); grp.add(body); const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.3, 32), new THREE.MeshStandardMaterial({color:0x050505})); lens.rotateX(Math.PI/2); lens.position.z = 0.35; addGlowOutline(lens, 0x00ffff); grp.add(lens); const hit = new THREE.Mesh(new THREE.SphereGeometry(0.6), new THREE.MeshBasicMaterial({visible:false})); hit.userData = {isCamera:true}; grp.add(hit); cameraRigGroup.add(grp); cameraModel = grp; };
 
             const initThreeJS = () => {
                 const container = document.getElementById('canvas-container');
@@ -532,14 +596,11 @@
 
                 controls = new OrbitControls(camera, renderer.domElement);
                 controls.enableDamping = true;
-                // Re-enable all mouse buttons for OrbitControls default behavior (Left: Rotate, Middle: Zoom, Right: Pan)
-                // We will selectively disable controls when hitting objects
                 
                 dragPlane = new THREE.Mesh(new THREE.PlaneGeometry(100,100), new THREE.MeshBasicMaterial({visible:false})); 
                 dragPlane.rotation.x = -Math.PI/2; 
                 scene.add(dragPlane);
 
-                // Interactions
                 const cvs = renderer.domElement;
                 cvs.addEventListener('mousedown', onMouseDown);
                 window.addEventListener('mousemove', onMouseMove);
@@ -562,132 +623,72 @@
                 }
             };
 
-            // --- Interactive Logic ---
             const onMouseDown = (e) => {
-                if(e.button !== 0) return; // Only Left Click
-                
+                if(e.button !== 0) return;
                 const rect = renderer.domElement.getBoundingClientRect();
                 mouse.x = ((e.clientX - rect.left)/rect.width)*2-1; 
                 mouse.y = -((e.clientY - rect.top)/rect.height)*2+1;
-                
                 raycaster.setFromCamera(mouse, camera);
                 
-                // Check Camera Rig
                 const hitCam = raycaster.intersectObjects(cameraRigGroup.children, true).find(o=>o.object.userData.isCamera);
-                
-                // Check Subject
                 const hitSub = raycaster.intersectObjects([subjectMesh], false).length > 0;
                 
                 if (hitCam) {
-                    dragMode = 'camera';
-                    isDragging = true;
-                    controls.enabled = false;
+                    dragMode = 'camera'; isDragging = true; controls.enabled = false;
                     document.getElementById('canvas-container').classList.add('dragging');
                 } else if (hitSub) {
-                    dragMode = 'subject';
-                    isDragging = true;
-                    controls.enabled = false;
+                    dragMode = 'subject'; isDragging = true; controls.enabled = false;
                     document.getElementById('canvas-container').classList.add('dragging');
                 } else {
-                    // Background click - do nothing, let OrbitControls handle view
-                    dragMode = null;
-                    isDragging = false; 
-                    controls.enabled = true;
+                    dragMode = null; isDragging = false; controls.enabled = true;
                 }
-                
-                dragAccumulatorX = 0;
-                dragAccumulatorY = 0;
+                dragAccumulatorX = 0; dragAccumulatorY = 0;
             };
 
             const onMouseMove = (e) => {
                 const container = document.getElementById('canvas-container');
-                
-                // Update cursor style on hover
                 if (!isDragging) {
                     const rect = renderer.domElement.getBoundingClientRect();
                     mouse.x = ((e.clientX - rect.left)/rect.width)*2-1; 
                     mouse.y = -((e.clientY - rect.top)/rect.height)*2+1;
                     raycaster.setFromCamera(mouse, camera);
-                    
                     const hitCam = raycaster.intersectObjects(cameraRigGroup.children, true).find(o=>o.object.userData.isCamera);
                     const hitSub = raycaster.intersectObjects([subjectMesh], false).length > 0;
-                    
-                    if (hitCam) {
-                        container.classList.add('hover-camera');
-                        container.classList.remove('hover-subject');
-                    } else if (hitSub) {
-                        container.classList.add('hover-subject');
-                        container.classList.remove('hover-camera');
-                    } else {
-                        container.classList.remove('hover-camera');
-                        container.classList.remove('hover-subject');
-                    }
+                    if (hitCam) { container.classList.add('hover-camera'); container.classList.remove('hover-subject'); } 
+                    else if (hitSub) { container.classList.add('hover-subject'); container.classList.remove('hover-camera'); } 
+                    else { container.classList.remove('hover-camera'); container.classList.remove('hover-subject'); }
                     return;
                 }
-
-                // Handle Drag Logic
                 if (isDragging) {
-                    dragAccumulatorX += e.movementX;
-                    dragAccumulatorY += e.movementY;
-
+                    dragAccumulatorX += e.movementX; dragAccumulatorY += e.movementY;
                     if (dragMode === 'camera') {
-                        // Horizontal (X) -> Modify horizontalIndex
                         if (Math.abs(dragAccumulatorX) > SNAP_THRESHOLD_X) {
                             const steps = Math.floor(Math.abs(dragAccumulatorX) / SNAP_THRESHOLD_X) * Math.sign(dragAccumulatorX);
                             let newIdx = horizontalIndex.value + steps;
-                            
-                            // Wrap logic
-                            if (newIdx >= horizontalSteps.length) newIdx = 0;
-                            if (newIdx < 0) newIdx = horizontalSteps.length - 1;
-                            
-                            horizontalIndex.value = newIdx;
-                            dragAccumulatorX = 0; // Reset after snap
+                            if (newIdx >= horizontalSteps.length) newIdx = 0; if (newIdx < 0) newIdx = horizontalSteps.length - 1;
+                            horizontalIndex.value = newIdx; dragAccumulatorX = 0;
                         }
-
-                        // Vertical (Y) -> Modify angleIndex
                         if (Math.abs(dragAccumulatorY) > SNAP_THRESHOLD_Y) {
                             const steps = Math.floor(Math.abs(dragAccumulatorY) / SNAP_THRESHOLD_Y) * Math.sign(dragAccumulatorY);
-                            // Drag Down (Positive Y) -> decrease angle index (towards Nadir/0)
-                            // Drag Up (Negative Y) -> increase angle index (towards God's Eye/6)
                             let newVIdx = params.value.angleIndex - steps;
-                            
-                            // Clamp
-                            if (newVIdx < 0) newVIdx = 0;
-                            if (newVIdx >= angleLevels.length) newVIdx = angleLevels.length - 1;
-                            
-                            params.value.angleIndex = newVIdx;
-                            dragAccumulatorY = 0;
+                            if (newVIdx < 0) newVIdx = 0; if (newVIdx >= angleLevels.length) newVIdx = angleLevels.length - 1;
+                            params.value.angleIndex = newVIdx; dragAccumulatorY = 0;
                         }
                     } else if (dragMode === 'subject') {
-                        // Subject Rotation (X only)
                         if (Math.abs(dragAccumulatorX) > SNAP_THRESHOLD_ROT) {
                             const steps = Math.floor(Math.abs(dragAccumulatorX) / SNAP_THRESHOLD_ROT) * Math.sign(dragAccumulatorX);
                             let newRot = params.value.subjectRot + (steps * 45);
-                            
-                            // Clamp -180 to 180
-                            if (newRot > 180) newRot = 180;
-                            if (newRot < -180) newRot = -180;
-                            
-                            params.value.subjectRot = newRot;
-                            dragAccumulatorX = 0;
+                            if (newRot > 180) newRot = 180; if (newRot < -180) newRot = -180;
+                            params.value.subjectRot = newRot; dragAccumulatorX = 0;
                         }
                     }
                 }
             };
 
-            const onMouseUp = () => { 
-                isDragging = false; 
-                dragMode = null; 
-                controls.enabled = true; // Re-enable orbit controls
-                document.getElementById('canvas-container').classList.remove('dragging');
-            };
+            const onMouseUp = () => { isDragging = false; dragMode = null; controls.enabled = true; document.getElementById('canvas-container').classList.remove('dragging'); };
 
-            // Removed custom wheel handler to let OrbitControls handle zoom
-
-            // Update Rig Visuals
             const updateRig = () => {
                 if(!subjectMesh || !cameraRigGroup) return;
-                
                 subjectMesh.rotation.y = THREE.MathUtils.degToRad(params.value.subjectRot);
                 const centerY = currentSubjectHeight / 2;
 
@@ -696,7 +697,6 @@
                 const theta = THREE.MathUtils.degToRad(params.value.horizontal);
                 const hOffset = heightLevels[params.value.heightIndex].yOffset;
 
-                // Spherical calc
                 const x = r * Math.sin(phi) * Math.sin(theta);
                 const z = r * Math.sin(phi) * Math.cos(theta);
                 const yAngle = r * Math.cos(phi) + centerY;
@@ -704,14 +704,29 @@
 
                 cameraRigGroup.position.set(x, finalY, z);
                 cameraRigGroup.lookAt(0, centerY, 0);
+                
+                // Pan Logic
+                if (params.value.pan !== 0) {
+                    cameraRigGroup.rotateY(THREE.MathUtils.degToRad(params.value.pan * -15)); 
+                }
 
                 cameraRigGroup.rotateZ(-THREE.MathUtils.degToRad(params.value.roll));
-                // CORRECTED TILT
                 cameraRigGroup.rotateX(THREE.MathUtils.degToRad(-params.value.tilt * 20));
 
                 pipCamera.position.copy(cameraRigGroup.position);
                 pipCamera.quaternion.copy(cameraRigGroup.quaternion);
                 pipCamera.rotateY(Math.PI);
+                
+                // Focal Length Logic
+                const fl = focalSteps[params.value.focalIndex];
+                if (fl > 0) {
+                    const sensorHeight = 24; 
+                    const fov = 2 * Math.atan(sensorHeight / (2 * fl)) * (180 / Math.PI);
+                    pipCamera.fov = fov;
+                } else {
+                    pipCamera.fov = 50; 
+                }
+                pipCamera.updateProjectionMatrix();
 
                 updateMatrixVisuals(0, centerY, 0, r, phi, hOffset);
             };
@@ -735,7 +750,7 @@
 
             const animate = () => {
                 requestAnimationFrame(animate);
-                controls.update(); // Keep God Cam smooth
+                controls.update(); 
                 updateRig();
                 if(composer) composer.render(); else renderer.render(scene, camera);
                 
@@ -755,10 +770,10 @@
 
             return { 
                 matrixMode, params, isDraggingOver,
-                horizontalSteps, horizontalIndex,
+                horizontalSteps, horizontalIndex, focalSteps,
                 angleLevels, heightLevels, distanceLevels, 
                 generatedPrompt, hasImage, imagePreview, handleImageUpload, handleDrop, clearImage, copyPrompt, copied, resetAll,
-                getHorizontalLabel, getSubjectRotLabel
+                getHorizontalLabel, getSubjectRotLabel, getFocalLabel
             };
         }
     }).mount('#app');
