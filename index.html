@@ -25,186 +25,79 @@
         body { font-family: 'Inter', sans-serif; background-color: #050505; color: #e5e7eb; overflow: hidden; }
         
         /* --- Dynamic Slider Coloring Logic --- */
-        /* Base Slider Reset */
-        input[type=range] {
-            -webkit-appearance: none;
-            width: 100%;
-            background: transparent;
-        }
+        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
         input[type=range]:focus { outline: none; }
-
-        /* Thumb & Track Defaults (Grey/Inactive) */
         input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            height: 14px;
-            width: 14px;
-            border-radius: 50%;
-            background: #52525b; /* Zinc 600 */
-            cursor: pointer;
-            margin-top: -5px;
-            border: 1px solid #71717a;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            box-shadow: 0 0 0 transparent;
+            -webkit-appearance: none; height: 14px; width: 14px; border-radius: 50%;
+            background: #52525b; cursor: pointer; margin-top: -5px;
+            border: 1px solid #71717a; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
         input[type=range]::-webkit-slider-runnable-track {
-            width: 100%;
-            height: 4px;
-            cursor: pointer;
-            background: #27272a; /* Zinc 800 */
-            border-radius: 2px;
+            width: 100%; height: 4px; cursor: pointer; background: #27272a; border-radius: 2px;
         }
 
-        /* --- Active Colors (Applied via Vue classes) --- */
-        
-        /* 1. Cyan (Horizontal) */
-        input[type=range].active-cyan::-webkit-slider-thumb {
-            background: #fff;
-            border-color: #22d3ee;
-            box-shadow: 0 0 10px #22d3ee, 0 0 20px #22d3ee;
-        }
+        /* Active Colors */
+        input[type=range].active-cyan::-webkit-slider-thumb { background: #fff; border-color: #22d3ee; box-shadow: 0 0 10px #22d3ee, 0 0 20px #22d3ee; }
         input[type=range].active-cyan::-webkit-slider-runnable-track { background: #0e7490; }
-
-        /* 2. Violet (Vertical Angle) */
-        input[type=range].active-violet::-webkit-slider-thumb {
-            background: #fff;
-            border-color: #a78bfa;
-            box-shadow: 0 0 10px #a78bfa, 0 0 20px #a78bfa;
-        }
+        
+        input[type=range].active-violet::-webkit-slider-thumb { background: #fff; border-color: #a78bfa; box-shadow: 0 0 10px #a78bfa, 0 0 20px #a78bfa; }
         input[type=range].active-violet::-webkit-slider-runnable-track { background: #5b21b6; }
 
-        /* 3. Amber (Height - NEW) */
-        input[type=range].active-amber::-webkit-slider-thumb {
-            background: #fff;
-            border-color: #fbbf24;
-            box-shadow: 0 0 10px #fbbf24, 0 0 20px #fbbf24;
-        }
+        input[type=range].active-amber::-webkit-slider-thumb { background: #fff; border-color: #fbbf24; box-shadow: 0 0 10px #fbbf24, 0 0 20px #fbbf24; }
         input[type=range].active-amber::-webkit-slider-runnable-track { background: #92400e; }
 
-        /* 4. Emerald (Distance) */
-        input[type=range].active-emerald::-webkit-slider-thumb {
-            background: #fff;
-            border-color: #34d399;
-            box-shadow: 0 0 10px #34d399, 0 0 20px #34d399;
-        }
+        input[type=range].active-emerald::-webkit-slider-thumb { background: #fff; border-color: #34d399; box-shadow: 0 0 10px #34d399, 0 0 20px #34d399; }
         input[type=range].active-emerald::-webkit-slider-runnable-track { background: #065f46; }
 
-        /* 5. Rose (Tilt) */
-        input[type=range].active-rose::-webkit-slider-thumb {
-            background: #fff;
-            border-color: #fb7185;
-            box-shadow: 0 0 10px #fb7185, 0 0 20px #fb7185;
-        }
+        input[type=range].active-rose::-webkit-slider-thumb { background: #fff; border-color: #fb7185; box-shadow: 0 0 10px #fb7185, 0 0 20px #fb7185; }
         input[type=range].active-rose::-webkit-slider-runnable-track { background: #9f1239; }
 
-        /* 6. Fuchsia (Roll) */
-        input[type=range].active-fuchsia::-webkit-slider-thumb {
-            background: #fff;
-            border-color: #e879f9;
-            box-shadow: 0 0 10px #e879f9, 0 0 20px #e879f9;
-        }
+        input[type=range].active-fuchsia::-webkit-slider-thumb { background: #fff; border-color: #e879f9; box-shadow: 0 0 10px #e879f9, 0 0 20px #e879f9; }
         input[type=range].active-fuchsia::-webkit-slider-runnable-track { background: #86198f; }
 
-        /* 7. Blue (Subject) */
-        input[type=range].active-blue::-webkit-slider-thumb {
-            background: #fff;
-            border-color: #60a5fa;
-            box-shadow: 0 0 10px #60a5fa, 0 0 20px #60a5fa;
-        }
+        input[type=range].active-blue::-webkit-slider-thumb { background: #fff; border-color: #60a5fa; box-shadow: 0 0 10px #60a5fa, 0 0 20px #60a5fa; }
         input[type=range].active-blue::-webkit-slider-runnable-track { background: #1e40af; }
 
-
-        /* General UI */
-        .tick-marks {
-            display: flex;
-            justify-content: space-between;
-            height: 4px;
-            margin-top: 6px;
-            padding: 0 6px; 
-        }
-        .tick {
-            width: 1px;
-            height: 4px;
-            background-color: #444;
-        }
-
+        /* UI Elements */
+        .tick-marks { display: flex; justify-content: space-between; height: 4px; margin-top: 6px; padding: 0 6px; }
+        .tick { width: 1px; height: 4px; background-color: #444; }
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #000; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
         ::-webkit-scrollbar-thumb:hover { background: #555; }
-
+        
         .cursor-grab { cursor: grab; }
         .cursor-grabbing { cursor: grabbing; }
-
+        
         .pip-container {
-            position: absolute;
-            top: 20px;
-            left: 20px;
-            width: 280px;
-            height: 157px; 
-            background: #000;
-            border: 1px solid #333;
-            border-radius: 6px;
-            overflow: hidden;
-            z-index: 50;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            transition: all 0.3s ease;
+            position: absolute; top: 20px; left: 20px; width: 280px; height: 157px; 
+            background: #000; border: 1px solid #333; border-radius: 6px; overflow: hidden; z-index: 50;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8); transition: all 0.3s ease;
         }
         .pip-container:hover { border-color: #666; }
-        
         .pip-label {
-            position: absolute;
-            top: 8px;
-            left: 10px;
-            font-family: 'JetBrains Mono', monospace;
-            color: #22d3ee;
-            font-size: 10px;
-            pointer-events: none;
-            z-index: 51;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            background: rgba(0,0,0,0.8);
-            padding: 3px 8px;
-            border-radius: 4px;
-            border: 1px solid rgba(34, 211, 238, 0.3);
+            position: absolute; top: 8px; left: 10px; font-family: 'JetBrains Mono', monospace; color: #22d3ee;
+            font-size: 10px; pointer-events: none; z-index: 51; display: flex; align-items: center; gap: 6px;
+            background: rgba(0,0,0,0.8); padding: 3px 8px; border-radius: 4px; border: 1px solid rgba(34, 211, 238, 0.3);
         }
         .pip-label::before {
-            content: '';
-            display: block;
-            width: 6px;
-            height: 6px;
-            background-color: #ef4444; 
-            border-radius: 50%;
-            animation: blink 2s infinite;
+            content: ''; display: block; width: 6px; height: 6px; background-color: #ef4444; 
+            border-radius: 50%; animation: blink 2s infinite;
         }
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
-
         .tech-text { color: #fff; }
-        .glass-panel {
-            background: rgba(10, 10, 12, 0.95);
-            backdrop-filter: blur(10px);
-            border-right: 1px solid #27272a;
-        }
+        .glass-panel { background: rgba(10, 10, 12, 0.95); backdrop-filter: blur(10px); border-right: 1px solid #27272a; }
         .remove-img-btn {
-            position: absolute;
-            top: 8px;
-            right: 8px;
-            background: rgba(0, 0, 0, 0.85);
-            border: 1px solid #ef4444;
-            color: #ef4444;
-            border-radius: 4px;
-            padding: 4px 8px;
-            font-size: 10px;
-            font-weight: bold;
-            cursor: pointer;
-            z-index: 20;
+            position: absolute; top: 8px; right: 8px; background: rgba(0, 0, 0, 0.85); border: 1px solid #ef4444;
+            color: #ef4444; border-radius: 4px; padding: 4px 8px; font-size: 10px; font-weight: bold; cursor: pointer; z-index: 20;
         }
         .remove-img-btn:hover { background: #ef4444; color: white; }
+        .value-changed { color: #facc15 !important; text-shadow: 0 0 8px rgba(250, 204, 21, 0.5) !important; }
         
-        .value-changed {
-            color: #facc15 !important;
-            text-shadow: 0 0 8px rgba(250, 204, 21, 0.5) !important;
-        }
+        /* Interactive Cursor Styles */
+        #canvas-container.hover-subject { cursor: ew-resize; } /* For subject rotation */
+        #canvas-container.hover-camera { cursor: move; } /* For camera drag */
+        #canvas-container.dragging { cursor: grabbing !important; }
     </style>
 </head>
 <body>
@@ -237,34 +130,23 @@
                 </label>
             </div>
 
-            <!-- Image Upload (Drag & Drop Enabled) -->
+            <!-- Image Upload -->
             <div class="space-y-3">
                 <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">REFERENCE IMAGE</label>
                 <div class="relative group"
-                     @dragover.prevent="isDraggingOver = true"
-                     @dragleave.prevent="isDraggingOver = false"
-                     @drop.prevent="handleDrop">
-                    
+                     @dragover.prevent="isDraggingOver = true" @dragleave.prevent="isDraggingOver = false" @drop.prevent="handleDrop">
                     <input type="file" @change="handleImageUpload" accept="image/*" class="hidden" id="fileInput">
-                    
                     <label for="fileInput" 
                            class="flex flex-col items-center justify-center w-full h-32 border border-dashed rounded-lg cursor-pointer transition-all overflow-hidden relative"
                            :class="isDraggingOver ? 'border-cyan-400 bg-cyan-900/20' : 'border-gray-700/60 hover:border-cyan-500/50 hover:bg-cyan-900/10 bg-black/40'">
-                        
-                        <!-- Normal State -->
                         <div v-if="!hasImage && !isDraggingOver" class="text-center opacity-60 group-hover:opacity-100 transition duration-300">
                             <span class="text-[10px] text-gray-400 tracking-wide">UPLOAD OR DRAG IMAGE</span>
                         </div>
-                        
-                        <!-- Drag Over State -->
                         <div v-if="isDraggingOver" class="absolute inset-0 flex items-center justify-center bg-black/60 z-20 backdrop-blur-sm">
                             <span class="text-cyan-400 font-bold tracking-widest animate-pulse border border-cyan-500 px-3 py-1 rounded">DROP TO UPLOAD</span>
                         </div>
-
-                        <!-- Image Preview -->
                         <img v-if="hasImage" :src="imagePreview" class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition">
                     </label>
-
                     <div v-if="hasImage" @click.stop.prevent="clearImage" class="remove-img-btn">CLEAR</div>
                 </div>
             </div>
@@ -287,7 +169,7 @@
                     </div>
                 </div>
 
-                <!-- 2. Vertical Angle (Violet) - Angle Only -->
+                <!-- 2. Vertical Angle (Violet) -->
                 <div>
                     <div class="flex justify-between mb-2 items-end">
                         <label class="text-[11px] font-medium text-gray-400">Vertical Angle</label>
@@ -302,7 +184,7 @@
                     </div>
                 </div>
 
-                <!-- 3. Camera Height (Amber) - NEW SLIDER -->
+                <!-- 3. Camera Height (Amber) -->
                 <div>
                     <div class="flex justify-between mb-2 items-end">
                         <label class="text-[11px] font-medium text-gray-400">Camera Height</label>
@@ -368,7 +250,8 @@
                 <div class="flex justify-between items-center mb-3">
                     <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Nano Banana Prompt</label>
                     <div class="flex gap-2">
-                        <button @click="resetAll" class="text-[10px] text-gray-400 hover:text-white border border-gray-700 hover:border-gray-500 px-3 py-1 rounded font-medium transition flex items-center gap-1 group">
+                        <button @click="resetAll" class="text-[10px] bg-red-950/30 text-red-400 border border-red-900/50 px-3 py-1 rounded font-medium transition flex items-center gap-1 group hover:bg-red-900/80 hover:text-red-200 hover:border-red-500/50 hover:shadow-[0_0_15px_rgba(220,38,38,0.2)] active:bg-red-500 active:text-white active:shadow-[0_0_20px_rgba(239,68,68,0.6)]">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3 group-hover:-rotate-180 transition-transform duration-500" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" /></svg>
                             RESET
                         </button>
                         <button @click="copyPrompt" class="text-[10px] bg-cyan-900/40 text-cyan-300 hover:bg-cyan-400 hover:text-black border border-cyan-500/50 px-3 py-1 rounded font-medium transition flex items-center gap-2 shadow-[0_0_10px_rgba(34,211,238,0.2)] hover:shadow-[0_0_20px_rgba(34,211,238,0.5)]">
@@ -394,8 +277,10 @@
         </div>
         <!-- Hint -->
         <div class="absolute bottom-6 left-6 text-gray-500 text-[10px] pointer-events-none select-none z-10 font-mono space-y-1">
-            <p><span class="text-cyan-600/80">[LMB DRAG]</span> ORBIT</p>
-            <p><span class="text-cyan-600/80">[RMB DRAG]</span> PAN</p>
+            <p><span class="text-cyan-600/80">[LMB DRAG CAMERA]</span> ORBIT & ANGLE</p>
+            <p><span class="text-blue-500/80">[LMB ON SUBJECT]</span> ROTATE SUBJECT</p>
+            <p><span class="text-gray-600/80">[LMB DRAG BG]</span> VIEWPORT ORBIT</p>
+            <p><span class="text-emerald-500/80">[SCROLL]</span> VIEWPORT ZOOM</p>
         </div>
     </div>
 
@@ -418,18 +303,11 @@
             const hasImage = ref(false);
             const imagePreview = ref(null);
             const copied = ref(false);
-            const isDraggingOver = ref(false); // For Drag & Drop UI
+            const isDraggingOver = ref(false);
 
             // --- DATA DEFINITIONS ---
+            const horizontalSteps = [-180, -135, -90, -60, -45, -30, 0, 30, 45, 60, 90, 135, 180];
 
-            // 0. Horizontal Steps (Explicit 7-step Logic per side)
-            const horizontalSteps = [
-                -180, -135, -90, -60, -45, -30, 
-                0, 
-                30, 45, 60, 90, 135, 180
-            ];
-
-            // 1. Distance Levels (12 Steps)
             const distanceLevels = [
                 { label: "Probe Lens", prompt: "Probe Lens", radius: 0.5, parallax: "[Parallax]: Background extremely blurred with intense bokeh due to macro depth of field." },
                 { label: "Macro", prompt: "Macro Shot", radius: 0.8, parallax: "[Parallax]: Background becomes an abstract wash of color; depth of field is paper-thin." },
@@ -445,7 +323,6 @@
                 { label: "EWS", prompt: "Extreme Wide Shot (EWS)", radius: 12.0, parallax: "[Parallax]: Background dominates the frame; massive environmental scale." }
             ];
 
-            // 2. Vertical ANGLE Levels (7 Steps - Focus on Angle Only)
             const angleLevels = [
                 { label: "Nadir / Undershot", prompt: "Nadir View", phi: 170, parallax: "[Parallax]: Background replaced by ceiling/sky elements looking straight up." },
                 { label: "Worm's Eye", prompt: "Worm's Eye View", phi: 130, parallax: "[Parallax]: Background shifts significantly upwards; towering perspective." },
@@ -456,7 +333,6 @@
                 { label: "God's Eye", prompt: "God's Eye View", phi: 10, parallax: "[Parallax]: Background becomes the ground map directly below." }
             ];
 
-            // 3. Camera HEIGHT Levels (5 Steps - NEW)
             const heightLevels = [
                 { label: "Eye-Level", prompt: "", yOffset: 1.6 }, // Default [0]
                 { label: "Shoulder Level", prompt: "Shoulder Level Shot", yOffset: 1.4 },
@@ -465,18 +341,17 @@
                 { label: "Ground Level", prompt: "Ground Level Shot", yOffset: 0.1 }
             ];
 
-            // Camera Parameters
             const params = ref({
                 horizontal: 0,
-                angleIndex: 3,    // Default Level
-                heightIndex: 0,   // Default Eye-Level (New)
-                distanceIndex: 6, // Default Medium
+                angleIndex: 3,
+                heightIndex: 0,
+                distanceIndex: 6,
                 tilt: 0,
                 roll: 0,
                 subjectRot: 0
             });
 
-            // Computed for Horizontal Slider Mapped Index
+            // Computed for Horizontal Slider
             const horizontalIndex = computed({
                 get: () => horizontalSteps.indexOf(params.value.horizontal),
                 set: (idx) => { params.value.horizontal = horizontalSteps[idx]; }
@@ -495,14 +370,13 @@
             };
 
             // --- Prompt Logic ---
-            
             const getHorizontalPrompt = () => {
                 const h = params.value.horizontal;
                 if (h === 0) return "[Camera]: 0° Frontal View. [Orientation]: Subject facing directly at camera. [Logic]: Static background, perfect symmetry.";
                 
                 const absH = Math.abs(h);
-                
-                // RIGHT SIDE CAMERA (Slider > 0) -> Subject looks LEFT on screen
+                // Swapped Left/Right logic to correct for AI interpretation
+                // If Slider is Positive (Right), prompts are "Right"
                 if (h > 0) {
                     if (absH <= 30) return `[Camera]: 30° Right, slight angle. [Orientation]: Subject facing slightly screen-left. [Logic]: Parallax background movement from right to left.`;
                     if (absH <= 45) return `[Camera]: 45° Right, standard 3/4 view. [Orientation]: Subject facing screen-left. [Logic]: Background shifts left relative to subject.`;
@@ -511,8 +385,6 @@
                     if (absH <= 135) return `[Camera]: 135° Right-Rear, over-the-shoulder. [Orientation]: Subject facing away towards screen-left. [Logic]: Background transitions to rear view.`;
                     return `[Camera]: 180° Direct Rear. [Orientation]: Subject facing away from camera. [Logic]: Full rear landscape view.`;
                 } 
-                
-                // LEFT SIDE CAMERA (Slider < 0) -> Subject looks RIGHT on screen
                 if (h < 0) {
                     if (absH <= 30) return `[Camera]: 30° Left, slight angle. [Orientation]: Subject facing slightly screen-right. [Logic]: Parallax background movement from left to right.`;
                     if (absH <= 45) return `[Camera]: 45° Left, standard 3/4 view. [Orientation]: Subject facing screen-right. [Logic]: Background shifts right relative to subject.`;
@@ -539,20 +411,20 @@
 
             const getHeightPrompt = () => {
                 const idx = params.value.heightIndex;
-                if (idx === 0) return ""; // Default Eye-Level
+                if (idx === 0) return ""; 
                 return `Position camera at ${heightLevels[idx].prompt}. [Parallax]: Perspective shifts vertically to match ${heightLevels[idx].label} height relative to subject.`;
             };
 
             const getDistancePrompt = () => {
                 const idx = params.value.distanceIndex;
-                if (idx === 6) return ""; // Default MS
+                if (idx === 6) return ""; 
                 const data = distanceLevels[idx];
                 return `Change shot size to ${data.prompt}. ${data.parallax}`;
             };
 
-            // ... other getters (roll, tilt, subject) ...
             const getRollPrompt = () => params.value.roll !== 0 ? "Apply a Dutch Angle tilt. [Parallax]: Horizon line tilts diagonally matching the roll angle." : "";
             const getTiltPrompt = () => params.value.tilt !== 0 ? (params.value.tilt > 0 ? "Tilt Up. [Parallax]: Vertical perspective converges upwards." : "Tilt Down. [Parallax]: Vertical perspective converges downwards.") : "";
+            
             const getSubjectRotPrompt = () => {
                 const r = params.value.subjectRot;
                 if (r === 0) return "";
@@ -563,26 +435,11 @@
             const getSubjectRotLabel = () => params.value.subjectRot === 0 ? "FRONT" : `${params.value.subjectRot}°`;
 
             const generatedPrompt = computed(() => {
-                if (matrixMode.value) {
-                    const angles = [
-                        "Front View. [Constraints]: Stationary Subject.", 
-                        "Slightly Angled Right. [Parallax]: BG shifts Left.", 
-                        "Three-Quarter Right. [Parallax]: BG shifts Left.", 
-                        "Right Profile. [Parallax]: New Side BG.", 
-                        "Rear-Right Angle. [Parallax]: Rear BG.", 
-                        "Back View. [Parallax]: Rear Landscape.", 
-                        "Rear-Left Angle. [Parallax]: Rear BG.", 
-                        "Left Profile. [Parallax]: New Side BG.", 
-                        "Three-Quarter Left. [Parallax]: BG shifts Right.", 
-                        "Slightly Angled Left. [Parallax]: BG shifts Right."
-                    ];
-                    return angles.map(a => `[${a.split('.')[0]}]: ${a}`).join("\n");
-                }
-
+                if (matrixMode.value) return "Matrix Mode: [Generating 12-Angle Sequence...]";
                 let commands = [];
                 const p_hor = getHorizontalPrompt();
                 const p_ang = getAnglePrompt();
-                const p_hgt = getHeightPrompt(); // New
+                const p_hgt = getHeightPrompt();
                 const p_dist = getDistancePrompt();
                 const p_roll = getRollPrompt();
                 const p_tilt = getTiltPrompt();
@@ -604,73 +461,37 @@
                 return commands.join(", ") + ". " + anchor;
             });
 
-            // --- Three.js & Setup ---
-            const handleImageUpload = (e) => {
-                const file = e.target.files[0];
-                if(file) { processFile(file); }
-            };
-            
-            // Drag & Drop Handler
-            const handleDrop = (e) => {
-                isDraggingOver.value = false;
-                const file = e.dataTransfer.files[0];
-                if(file && file.type.startsWith('image/')) {
-                    processFile(file);
-                }
-            };
-
-            const processFile = (file) => {
-                const reader = new FileReader();
-                reader.onload = (ev) => { 
-                    imagePreview.value = ev.target.result; 
-                    hasImage.value = true; 
-                    updateTexture(ev.target.result); 
-                };
-                reader.readAsDataURL(file);
-            };
-
-            const clearImage = () => { hasImage.value = false; imagePreview.value = null; updateTexture(null); document.getElementById('fileInput').value = ""; };
-            const copyPrompt = () => {
-                if(!generatedPrompt.value) return;
-                const ta = document.createElement('textarea'); ta.value = generatedPrompt.value; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta);
-                copied.value = true; setTimeout(()=>copied.value=false, 2000);
-            };
-
-            let scene, camera, renderer, pipRenderer, controls, pipCamera, composer, subjectMesh, cameraRigGroup, cameraModel, matrixGroup, masterMiniCamera; 
+            // --- Three.js Logic ---
+            let scene, camera, renderer, pipRenderer, controls, pipCamera, composer, subjectMesh, cameraRigGroup, cameraModel, matrixGroup, masterMiniCamera;
             let currentSubjectHeight = 2.0;
             let isDragging = false;
+            let dragMode = null; // 'orbit', 'subject', 'camera'
             let raycaster = new THREE.Raycaster();
             let mouse = new THREE.Vector2();
             let dragPlane;
+            
+            // Accumulators for snapping logic
+            let dragAccumulatorX = 0;
+            let dragAccumulatorY = 0;
+            const SNAP_THRESHOLD_X = 30; // pixels to snap horizontal
+            const SNAP_THRESHOLD_Y = 30; // pixels to snap vertical
+            const SNAP_THRESHOLD_ROT = 40; // pixels for subject rotation
 
-            // ... (Include addGlowOutline, createMasterMiniCamera, createCameraModel from previous code) ...
+            // --- Setup Helpers ---
+            const handleImageUpload = (e) => { const file = e.target.files[0]; if(file) processFile(file); };
+            const handleDrop = (e) => { isDraggingOver.value = false; const file = e.dataTransfer.files[0]; if(file && file.type.startsWith('image/')) processFile(file); };
+            const processFile = (file) => { const reader = new FileReader(); reader.onload = (ev) => { imagePreview.value = ev.target.result; hasImage.value = true; updateTexture(ev.target.result); }; reader.readAsDataURL(file); };
+            const clearImage = () => { hasImage.value = false; imagePreview.value = null; updateTexture(null); document.getElementById('fileInput').value = ""; };
+            const copyPrompt = () => { if(!generatedPrompt.value) return; const ta = document.createElement('textarea'); ta.value = generatedPrompt.value; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); copied.value = true; setTimeout(()=>copied.value=false, 2000); };
+
             const addGlowOutline = (mesh, color = 0x00ffff) => {
                 const edges = new THREE.EdgesGeometry(mesh.geometry);
                 const lineMat = new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: 1.0, blending: THREE.AdditiveBlending });
                 const lines = new THREE.LineSegments(edges, lineMat);
                 mesh.add(lines);
             };
-            const createMasterMiniCamera = () => {
-                const grp = new THREE.Group();
-                const body = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.12, 0.15), new THREE.MeshStandardMaterial({color:0x111111}));
-                addGlowOutline(body, 0x00ffff); grp.add(body);
-                const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.1, 16), new THREE.MeshStandardMaterial({color:0x000000}));
-                lens.rotateX(Math.PI/2); lens.position.z = 0.11; addGlowOutline(lens, 0x00ffff); grp.add(lens);
-                return grp;
-            };
-            const createCameraModel = () => {
-                const grp = new THREE.Group();
-                // Simple camera Box representation for rig
-                const body = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.35, 0.5), new THREE.MeshStandardMaterial({color:0x1a1a1a}));
-                addGlowOutline(body, 0x00ffff); grp.add(body);
-                const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.3, 32), new THREE.MeshStandardMaterial({color:0x050505}));
-                lens.rotateX(Math.PI/2); lens.position.z = 0.35; addGlowOutline(lens, 0x00ffff); grp.add(lens);
-                // Hitbox
-                const hit = new THREE.Mesh(new THREE.SphereGeometry(0.6), new THREE.MeshBasicMaterial({visible:false}));
-                hit.userData = {isCamera:true}; grp.add(hit);
-                cameraRigGroup.add(grp);
-                cameraModel = grp;
-            };
+            const createMasterMiniCamera = () => { /* ... same as before ... */ const grp = new THREE.Group(); const body = new THREE.Mesh(new THREE.BoxGeometry(0.1, 0.12, 0.15), new THREE.MeshStandardMaterial({color:0x111111})); addGlowOutline(body, 0x00ffff); grp.add(body); const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.04, 0.04, 0.1, 16), new THREE.MeshStandardMaterial({color:0x000000})); lens.rotateX(Math.PI/2); lens.position.z = 0.11; addGlowOutline(lens, 0x00ffff); grp.add(lens); return grp; };
+            const createCameraModel = () => { /* ... same as before ... */ const grp = new THREE.Group(); const body = new THREE.Mesh(new THREE.BoxGeometry(0.3, 0.35, 0.5), new THREE.MeshStandardMaterial({color:0x1a1a1a})); addGlowOutline(body, 0x00ffff); grp.add(body); const lens = new THREE.Mesh(new THREE.CylinderGeometry(0.12, 0.12, 0.3, 32), new THREE.MeshStandardMaterial({color:0x050505})); lens.rotateX(Math.PI/2); lens.position.z = 0.35; addGlowOutline(lens, 0x00ffff); grp.add(lens); const hit = new THREE.Mesh(new THREE.SphereGeometry(0.6), new THREE.MeshBasicMaterial({visible:false})); hit.userData = {isCamera:true}; grp.add(hit); cameraRigGroup.add(grp); cameraModel = grp; };
 
             const initThreeJS = () => {
                 const container = document.getElementById('canvas-container');
@@ -692,33 +513,35 @@
                 pipRenderer.setSize(pipDiv.clientWidth, pipDiv.clientHeight);
                 pipDiv.appendChild(pipRenderer.domElement);
 
-                // Lights
                 scene.add(new THREE.AmbientLight(0xffffff, 0.3));
                 const dir = new THREE.DirectionalLight(0xffffff, 0.8); dir.position.set(5,10,5); scene.add(dir);
                 
-                // Composer
                 const renderScene = new RenderPass(scene, camera);
                 const bloomPass = new UnrealBloomPass(new THREE.Vector2(container.clientWidth, container.clientHeight), 1.5, 0.4, 0.85);
                 bloomPass.threshold = 0.6; bloomPass.strength = 1.0; bloomPass.radius = 0.8;
                 composer = new EffectComposer(renderer); composer.addPass(renderScene); composer.addPass(bloomPass); composer.addPass(new OutputPass());
 
-                // Subject
                 subjectMesh = new THREE.Mesh(new THREE.PlaneGeometry(1,1), new THREE.MeshStandardMaterial({color:0x888888, side:THREE.DoubleSide, transparent:true}));
                 subjectMesh.scale.set(1.5, 2, 1); subjectMesh.position.y = 1; scene.add(subjectMesh);
+                subjectMesh.userData = { isSubject: true };
 
                 cameraRigGroup = new THREE.Group(); scene.add(cameraRigGroup);
                 createCameraModel();
-                
                 masterMiniCamera = createMasterMiniCamera();
                 matrixGroup = new THREE.Group(); scene.add(matrixGroup);
 
                 controls = new OrbitControls(camera, renderer.domElement);
                 controls.enableDamping = true;
+                // Re-enable all mouse buttons for OrbitControls default behavior (Left: Rotate, Middle: Zoom, Right: Pan)
+                // We will selectively disable controls when hitting objects
                 
-                dragPlane = new THREE.Mesh(new THREE.PlaneGeometry(100,100), new THREE.MeshBasicMaterial({visible:false})); scene.add(dragPlane);
+                dragPlane = new THREE.Mesh(new THREE.PlaneGeometry(100,100), new THREE.MeshBasicMaterial({visible:false})); 
+                dragPlane.rotation.x = -Math.PI/2; 
+                scene.add(dragPlane);
 
-                // Events
-                renderer.domElement.addEventListener('mousedown', onMouseDown);
+                // Interactions
+                const cvs = renderer.domElement;
+                cvs.addEventListener('mousedown', onMouseDown);
                 window.addEventListener('mousemove', onMouseMove);
                 window.addEventListener('mouseup', onMouseUp);
                 window.addEventListener('resize', onWindowResize);
@@ -739,22 +562,129 @@
                 }
             };
 
-            // Mouse Events
+            // --- Interactive Logic ---
             const onMouseDown = (e) => {
+                if(e.button !== 0) return; // Only Left Click
+                
                 const rect = renderer.domElement.getBoundingClientRect();
-                mouse.x = ((e.clientX - rect.left)/rect.width)*2-1; mouse.y = -((e.clientY - rect.top)/rect.height)*2+1;
+                mouse.x = ((e.clientX - rect.left)/rect.width)*2-1; 
+                mouse.y = -((e.clientY - rect.top)/rect.height)*2+1;
+                
                 raycaster.setFromCamera(mouse, camera);
-                const hits = raycaster.intersectObjects(cameraRigGroup.children, true);
-                if(hits.find(o=>o.object.userData.isCamera)) { isDragging=true; controls.enabled=false; dragPlane.position.copy(cameraRigGroup.position); dragPlane.quaternion.copy(camera.quaternion); }
+                
+                // Check Camera Rig
+                const hitCam = raycaster.intersectObjects(cameraRigGroup.children, true).find(o=>o.object.userData.isCamera);
+                
+                // Check Subject
+                const hitSub = raycaster.intersectObjects([subjectMesh], false).length > 0;
+                
+                if (hitCam) {
+                    dragMode = 'camera';
+                    isDragging = true;
+                    controls.enabled = false;
+                    document.getElementById('canvas-container').classList.add('dragging');
+                } else if (hitSub) {
+                    dragMode = 'subject';
+                    isDragging = true;
+                    controls.enabled = false;
+                    document.getElementById('canvas-container').classList.add('dragging');
+                } else {
+                    // Background click - do nothing, let OrbitControls handle view
+                    dragMode = null;
+                    isDragging = false; 
+                    controls.enabled = true;
+                }
+                
+                dragAccumulatorX = 0;
+                dragAccumulatorY = 0;
             };
+
             const onMouseMove = (e) => {
-                if(isDragging) {
-                    params.value.horizontal += e.movementX * 0.5;
+                const container = document.getElementById('canvas-container');
+                
+                // Update cursor style on hover
+                if (!isDragging) {
+                    const rect = renderer.domElement.getBoundingClientRect();
+                    mouse.x = ((e.clientX - rect.left)/rect.width)*2-1; 
+                    mouse.y = -((e.clientY - rect.top)/rect.height)*2+1;
+                    raycaster.setFromCamera(mouse, camera);
+                    
+                    const hitCam = raycaster.intersectObjects(cameraRigGroup.children, true).find(o=>o.object.userData.isCamera);
+                    const hitSub = raycaster.intersectObjects([subjectMesh], false).length > 0;
+                    
+                    if (hitCam) {
+                        container.classList.add('hover-camera');
+                        container.classList.remove('hover-subject');
+                    } else if (hitSub) {
+                        container.classList.add('hover-subject');
+                        container.classList.remove('hover-camera');
+                    } else {
+                        container.classList.remove('hover-camera');
+                        container.classList.remove('hover-subject');
+                    }
+                    return;
+                }
+
+                // Handle Drag Logic
+                if (isDragging) {
+                    dragAccumulatorX += e.movementX;
+                    dragAccumulatorY += e.movementY;
+
+                    if (dragMode === 'camera') {
+                        // Horizontal (X) -> Modify horizontalIndex
+                        if (Math.abs(dragAccumulatorX) > SNAP_THRESHOLD_X) {
+                            const steps = Math.floor(Math.abs(dragAccumulatorX) / SNAP_THRESHOLD_X) * Math.sign(dragAccumulatorX);
+                            let newIdx = horizontalIndex.value + steps;
+                            
+                            // Wrap logic
+                            if (newIdx >= horizontalSteps.length) newIdx = 0;
+                            if (newIdx < 0) newIdx = horizontalSteps.length - 1;
+                            
+                            horizontalIndex.value = newIdx;
+                            dragAccumulatorX = 0; // Reset after snap
+                        }
+
+                        // Vertical (Y) -> Modify angleIndex
+                        if (Math.abs(dragAccumulatorY) > SNAP_THRESHOLD_Y) {
+                            const steps = Math.floor(Math.abs(dragAccumulatorY) / SNAP_THRESHOLD_Y) * Math.sign(dragAccumulatorY);
+                            // Drag Down (Positive Y) -> decrease angle index (towards Nadir/0)
+                            // Drag Up (Negative Y) -> increase angle index (towards God's Eye/6)
+                            let newVIdx = params.value.angleIndex - steps;
+                            
+                            // Clamp
+                            if (newVIdx < 0) newVIdx = 0;
+                            if (newVIdx >= angleLevels.length) newVIdx = angleLevels.length - 1;
+                            
+                            params.value.angleIndex = newVIdx;
+                            dragAccumulatorY = 0;
+                        }
+                    } else if (dragMode === 'subject') {
+                        // Subject Rotation (X only)
+                        if (Math.abs(dragAccumulatorX) > SNAP_THRESHOLD_ROT) {
+                            const steps = Math.floor(Math.abs(dragAccumulatorX) / SNAP_THRESHOLD_ROT) * Math.sign(dragAccumulatorX);
+                            let newRot = params.value.subjectRot + (steps * 45);
+                            
+                            // Clamp -180 to 180
+                            if (newRot > 180) newRot = 180;
+                            if (newRot < -180) newRot = -180;
+                            
+                            params.value.subjectRot = newRot;
+                            dragAccumulatorX = 0;
+                        }
+                    }
                 }
             };
-            const onMouseUp = () => { isDragging=false; controls.enabled=true; };
 
-            // 3D Update Logic
+            const onMouseUp = () => { 
+                isDragging = false; 
+                dragMode = null; 
+                controls.enabled = true; // Re-enable orbit controls
+                document.getElementById('canvas-container').classList.remove('dragging');
+            };
+
+            // Removed custom wheel handler to let OrbitControls handle zoom
+
+            // Update Rig Visuals
             const updateRig = () => {
                 if(!subjectMesh || !cameraRigGroup) return;
                 
@@ -769,31 +699,19 @@
                 // Spherical calc
                 const x = r * Math.sin(phi) * Math.sin(theta);
                 const z = r * Math.sin(phi) * Math.cos(theta);
-                // Combine Vertical Angle (phi) with Physical Height Offset (yOffset)
-                // We pivot around (0, centerY, 0) based on Angle, then add Height Offset
                 const yAngle = r * Math.cos(phi) + centerY;
-                
-                // COMPROMISE: 
-                // Angle Slider (Phi) controls the orbit on the sphere.
-                // Height Slider (Y-Offset) adds a vertical offset to the entire sphere rig.
-                
-                const finalY = yAngle + (hOffset - 1.6); // 1.6 is default Eye
+                const finalY = yAngle + (hOffset - 1.6); 
 
                 cameraRigGroup.position.set(x, finalY, z);
-                
-                // LookAt logic:
-                // If we simply look at center, the angle is determined by position.
-                // But "High Angle" prompt usually implies the visual result.
                 cameraRigGroup.lookAt(0, centerY, 0);
 
-                // Apply roll/tilt local
                 cameraRigGroup.rotateZ(-THREE.MathUtils.degToRad(params.value.roll));
-                // **FIXED TILT DIRECTION**: Negative multiplier to match slider logic (Left=Down)
+                // CORRECTED TILT
                 cameraRigGroup.rotateX(THREE.MathUtils.degToRad(-params.value.tilt * 20));
 
                 pipCamera.position.copy(cameraRigGroup.position);
                 pipCamera.quaternion.copy(cameraRigGroup.quaternion);
-                pipCamera.rotateY(Math.PI); // Fix inverted PIP
+                pipCamera.rotateY(Math.PI);
 
                 updateMatrixVisuals(0, centerY, 0, r, phi, hOffset);
             };
@@ -817,7 +735,7 @@
 
             const animate = () => {
                 requestAnimationFrame(animate);
-                if(controls && !isDragging) controls.update();
+                controls.update(); // Keep God Cam smooth
                 updateRig();
                 if(composer) composer.render(); else renderer.render(scene, camera);
                 
