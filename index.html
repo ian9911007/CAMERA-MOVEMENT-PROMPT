@@ -174,6 +174,9 @@
                         <div class="tick-marks absolute w-full top-3 pointer-events-none opacity-40">
                             <div v-for="step in horizontalSteps" :key="step" class="tick"></div>
                         </div>
+                        <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
+                            <span>L</span><span>0</span><span>R</span>
+                        </div>
                     </div>
                 </div>
 
@@ -181,28 +184,28 @@
                 <div>
                     <div class="flex justify-between mb-2 items-end">
                         <label class="text-[11px] font-medium text-gray-400">Vertical Angle</label>
-                        <span class="text-[10px] font-mono transition-colors duration-300" :class="params.angleIndex !== 3 ? 'text-violet-400 font-bold' : 'text-gray-600'">{{ angleLevels[params.angleIndex].label }}</span>
+                        <span class="text-[10px] font-mono transition-colors duration-300" :class="params.angleIndex !== 5 ? 'text-violet-400 font-bold' : 'text-gray-600'">{{ angleLevels[params.angleIndex].label }}</span>
                     </div>
                     <div class="relative h-6">
                         <input type="range" v-model.number="params.angleIndex" min="0" :max="angleLevels.length - 1" step="1"
-                               :class="params.angleIndex !== 3 ? 'active-violet' : ''">
+                               :class="params.angleIndex !== 5 ? 'active-violet' : ''">
                         <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
                             <span>LOW</span><span>LEVEL</span><span>HIGH</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- 3. Camera Height (Amber) -->
+                <!-- 3. Camera Height (Amber) - REVERSED -->
                 <div>
                     <div class="flex justify-between mb-2 items-end">
                         <label class="text-[11px] font-medium text-gray-400">Camera Height</label>
-                        <span class="text-[10px] font-mono transition-colors duration-300" :class="params.heightIndex !== 0 ? 'text-amber-400 font-bold' : 'text-gray-600'">{{ heightLevels[params.heightIndex].label }}</span>
+                        <span class="text-[10px] font-mono transition-colors duration-300" :class="params.heightIndex !== 4 ? 'text-amber-400 font-bold' : 'text-gray-600'">{{ heightLevels[params.heightIndex].label }}</span>
                     </div>
                     <div class="relative h-6">
                         <input type="range" v-model.number="params.heightIndex" min="0" :max="heightLevels.length - 1" step="1"
-                               :class="params.heightIndex !== 0 ? 'active-amber' : ''">
+                               :class="params.heightIndex !== 4 ? 'active-amber' : ''">
                         <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
-                            <span>EYE</span><span>HIP</span><span>GND</span>
+                            <span>GND</span><span>HIP</span><span>EYE</span>
                         </div>
                     </div>
                 </div>
@@ -216,6 +219,9 @@
                     <div class="relative h-6">
                         <input type="range" v-model.number="params.distanceIndex" min="0" :max="distanceLevels.length - 1" step="1"
                                :class="params.distanceIndex !== 6 ? 'active-emerald' : ''">
+                        <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
+                             <span>CLOSE</span><span>MID</span><span>WIDE</span>
+                        </div>
                     </div>
                 </div>
 
@@ -227,8 +233,13 @@
                             <label class="text-[10px] font-medium text-gray-400">Pan</label>
                             <span class="text-[9px] font-mono transition-colors duration-300" :class="params.pan !== 0 ? 'text-indigo-400 font-bold' : 'text-gray-600'">{{ params.pan === 0 ? '0' : (params.pan === -1 ? 'L' : 'R') }}</span>
                         </div>
-                        <input type="range" v-model.number="params.pan" min="-1" max="1" step="1"
-                               :class="params.pan !== 0 ? 'active-indigo' : ''">
+                        <div class="relative">
+                            <input type="range" v-model.number="params.pan" min="-1" max="1" step="1"
+                                :class="params.pan !== 0 ? 'active-indigo' : ''">
+                            <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
+                                <span>L</span><span>-</span><span>R</span>
+                            </div>
+                        </div>
                     </div>
                     <!-- Tilt (Rose) -->
                     <div>
@@ -236,8 +247,13 @@
                             <label class="text-[10px] font-medium text-gray-400">Tilt</label>
                             <span class="text-[9px] font-mono transition-colors duration-300" :class="params.tilt !== 0 ? 'text-rose-400 font-bold' : 'text-gray-600'">{{ params.tilt === 0 ? '0' : (params.tilt > 0 ? 'UP' : 'DN') }}</span>
                         </div>
-                        <input type="range" v-model.number="params.tilt" min="-1" max="1" step="1"
-                               :class="params.tilt !== 0 ? 'active-rose' : ''">
+                        <div class="relative">
+                            <input type="range" v-model.number="params.tilt" min="-1" max="1" step="1"
+                                :class="params.tilt !== 0 ? 'active-rose' : ''">
+                            <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
+                                <span>DN</span><span>-</span><span>UP</span>
+                            </div>
+                        </div>
                     </div>
                      <!-- Roll (Fuchsia) -->
                      <div>
@@ -245,8 +261,13 @@
                             <label class="text-[10px] font-medium text-gray-400">Roll</label>
                             <span class="text-[9px] font-mono transition-colors duration-300" :class="params.roll !== 0 ? 'text-fuchsia-400 font-bold' : 'text-gray-600'">{{ params.roll === 0 ? '0' : 'DT' }}</span>
                         </div>
-                        <input type="range" v-model.number="params.roll" min="-45" max="45" step="45"
-                               :class="params.roll !== 0 ? 'active-fuchsia' : ''">
+                        <div class="relative">
+                            <input type="range" v-model.number="params.roll" min="-45" max="45" step="45"
+                                :class="params.roll !== 0 ? 'active-fuchsia' : ''">
+                             <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
+                                <span>L</span><span>-</span><span>R</span>
+                            </div>
+                        </div>
                     </div>
                  </div>
 
@@ -271,8 +292,13 @@
                         <label class="text-[11px] font-medium text-gray-400">Object Rotation</label>
                         <span class="text-[10px] font-mono transition-colors duration-300" :class="params.subjectRot !== 0 ? 'text-blue-400 font-bold' : 'text-gray-600'">{{ getSubjectRotLabel() }}</span>
                     </div>
-                    <input type="range" v-model.number="params.subjectRot" min="-180" max="180" step="45"
+                    <div class="relative h-6">
+                        <input type="range" v-model.number="params.subjectRot" min="-180" max="180" step="45"
                            :class="params.subjectRot !== 0 ? 'active-blue' : ''">
+                         <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
+                            <span>L</span><span>0</span><span>R</span>
+                        </div>
+                    </div>
                 </div>
 
             </div>
@@ -357,28 +383,32 @@
             ];
 
             const angleLevels = [
-                { label: "Nadir / Undershot", prompt: "Nadir View", phi: 170, parallax: "[Parallax]: Background replaced by ceiling/sky elements looking straight up." },
-                { label: "Worm's Eye", prompt: "Worm's Eye View", phi: 130, parallax: "[Parallax]: Background shifts significantly upwards; towering perspective." },
-                { label: "Low Angle", prompt: "Low Angle Shot", phi: 110, parallax: "[Parallax]: Horizon line drops; ceiling/sky becomes more prominent in background." },
-                { label: "Level (0°)", prompt: "", phi: 90, parallax: "" }, // Default [3]
-                { label: "High Angle", prompt: "High Angle Shot", phi: 60, parallax: "[Parallax]: Horizon line rises; ground plane fills more of the background." },
-                { label: "Bird's Eye", prompt: "Bird's Eye View", phi: 40, parallax: "[Parallax]: Background shifts to reveal floor/ground texture clearly." },
-                { label: "God's Eye", prompt: "God's Eye View", phi: 10, parallax: "[Parallax]: Background becomes the ground map directly below." }
+                { label: "Nadir (Direct Bottom)", prompt: "Nadir View", phi: 179, parallax: "[Parallax]: Background becomes the sky/ceiling directly above." },
+                { label: "Undershot", prompt: "Undershot", phi: 160, parallax: "[Parallax]: Steep upward angle, subject towers over the frame." }, // Separated
+                { label: "Worm's Eye", prompt: "Worm's Eye View", phi: 140, parallax: "[Parallax]: Extreme low perspective looking up; imposing scale." },
+                { label: "Frog's Eye", prompt: "Frog's Eye View", phi: 120, parallax: "[Parallax]: Ground level gaze; floor texture dominant in foreground." }, // Added
+                { label: "Low Angle", prompt: "Low Angle Shot", phi: 105, parallax: "[Parallax]: Horizon drops; background reveals more sky/ceiling." },
+                { label: "Level (0°)", prompt: "", phi: 90, parallax: "" }, // Default [5]
+                { label: "High Angle", prompt: "High Angle Shot", phi: 70, parallax: "[Parallax]: Horizon rises; ground becomes more visible." },
+                { label: "Bird's Eye", prompt: "Bird's Eye View", phi: 45, parallax: "[Parallax]: Elevated view; spatial layout becomes clear." },
+                { label: "Overhead", prompt: "Overhead Shot", phi: 25, parallax: "[Parallax]: Near-vertical view; geometry flattens onto the ground plane." }, // Added
+                { label: "God's Eye", prompt: "God's Eye View", phi: 1, parallax: "[Parallax]: Top-down map view; total spatial overview." }
             ];
 
+            // REVERSED ORDER for Slider (0=GND, 4=EYE)
             const heightLevels = [
-                { label: "Eye-Level", prompt: "", yOffset: 1.6 }, // Default [0]
-                { label: "Shoulder Level", prompt: "Shoulder Level Shot", yOffset: 1.4 },
-                { label: "Hip Level", prompt: "Hip Level Shot", yOffset: 0.9 },
+                { label: "Ground Level", prompt: "Ground Level Shot", yOffset: 0.1 },
                 { label: "Knee Level", prompt: "Knee Level Shot", yOffset: 0.5 },
-                { label: "Ground Level", prompt: "Ground Level Shot", yOffset: 0.1 }
+                { label: "Hip Level", prompt: "Hip Level Shot", yOffset: 0.9 },
+                { label: "Shoulder Level", prompt: "Shoulder Level Shot", yOffset: 1.4 },
+                { label: "Eye-Level", prompt: "", yOffset: 1.6 } // Default [4]
             ];
 
             const params = ref({
                 horizontal: 0,
-                angleIndex: 3,
-                heightIndex: 0,
-                distanceIndex: 6,
+                angleIndex: 5,    // Default Level (Index 5)
+                heightIndex: 4,   // Default Eye-Level (Now Index 4)
+                distanceIndex: 6, // Default Medium
                 focalIndex: 0, // Default Off
                 pan: 0, // -1 Left, 0 Off, 1 Right
                 tilt: 0,
@@ -395,8 +425,8 @@
             const resetAll = () => {
                 params.value = {
                     horizontal: 0,
-                    angleIndex: 3,
-                    heightIndex: 0,
+                    angleIndex: 5,
+                    heightIndex: 4, // Reset to Eye-Level (Index 4)
                     distanceIndex: 6,
                     focalIndex: 0,
                     pan: 0,
@@ -441,14 +471,14 @@
 
             const getAnglePrompt = () => {
                 const idx = params.value.angleIndex;
-                if (idx === 3) return "";
+                if (idx === 5) return "";
                 const data = angleLevels[idx];
                 return `Adjust camera angle to ${data.prompt}. ${data.parallax}`;
             };
 
             const getHeightPrompt = () => {
                 const idx = params.value.heightIndex;
-                if (idx === 0) return ""; 
+                if (idx === 4) return ""; // Default Eye-Level (Now Index 4)
                 return `Position camera at ${heightLevels[idx].prompt}. [Parallax]: Perspective shifts vertically to match ${heightLevels[idx].label} height relative to subject.`;
             };
 
