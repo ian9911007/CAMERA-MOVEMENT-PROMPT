@@ -25,50 +25,96 @@
         body { font-family: 'Inter', sans-serif; background-color: #050505; color: #e5e7eb; overflow: hidden; }
         
         /* --- Dynamic Slider Coloring Logic --- */
-        input[type=range] { -webkit-appearance: none; width: 100%; background: transparent; }
-        input[type=range]:focus { outline: none; }
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none; height: 14px; width: 14px; border-radius: 50%;
-            background: #52525b; cursor: pointer; margin-top: -5px;
-            border: 1px solid #71717a; transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        input[type=range] { 
+            -webkit-appearance: none; 
+            width: 100%; 
+            background: transparent; 
+            height: 32px; 
+            cursor: pointer;
+            z-index: 20;
+            position: relative;
         }
+        input[type=range]:focus { outline: none; }
+        
+        /* Default Thumb (Grey) */
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none; 
+            height: 16px; 
+            width: 16px; 
+            border-radius: 50%;
+            background: #52525b; 
+            cursor: pointer; 
+            margin-top: -6px; 
+            border: 1px solid #71717a; 
+            transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+            position: relative; 
+            z-index: 30;
+        }
+        
+        /* Track */
         input[type=range]::-webkit-slider-runnable-track {
             width: 100%; height: 4px; cursor: pointer; background: #27272a; border-radius: 2px;
         }
-
-        /* Active Colors */
-        input[type=range].active-cyan::-webkit-slider-thumb { background: #fff; border-color: #22d3ee; box-shadow: 0 0 10px #22d3ee, 0 0 20px #22d3ee; }
-        input[type=range].active-cyan::-webkit-slider-runnable-track { background: #0e7490; }
         
-        input[type=range].active-violet::-webkit-slider-thumb { background: #fff; border-color: #a78bfa; box-shadow: 0 0 10px #a78bfa, 0 0 20px #a78bfa; }
-        input[type=range].active-violet::-webkit-slider-runnable-track { background: #5b21b6; }
+        /* Disabled State */
+        input[type=range]:disabled::-webkit-slider-thumb {
+            background: #262626; border-color: #404040; cursor: not-allowed; box-shadow: none !important;
+        }
+        input[type=range]:disabled::-webkit-slider-runnable-track {
+            background: #171717; cursor: not-allowed;
+        }
 
-        input[type=range].active-amber::-webkit-slider-thumb { background: #fff; border-color: #fbbf24; box-shadow: 0 0 10px #fbbf24, 0 0 20px #fbbf24; }
-        input[type=range].active-amber::-webkit-slider-runnable-track { background: #92400e; }
+        /* --- Rainbow Spectrum Colors --- */
+        input[type=range].active-red::-webkit-slider-thumb { background: #fff; border-color: #ef4444; box-shadow: 0 0 10px #ef4444, 0 0 20px #ef4444; }
+        input[type=range].active-red::-webkit-slider-runnable-track { background: #7f1d1d; }
 
-        input[type=range].active-emerald::-webkit-slider-thumb { background: #fff; border-color: #34d399; box-shadow: 0 0 10px #34d399, 0 0 20px #34d399; }
-        input[type=range].active-emerald::-webkit-slider-runnable-track { background: #065f46; }
-
-        input[type=range].active-rose::-webkit-slider-thumb { background: #fff; border-color: #fb7185; box-shadow: 0 0 10px #fb7185, 0 0 20px #fb7185; }
-        input[type=range].active-rose::-webkit-slider-runnable-track { background: #9f1239; }
-
-        input[type=range].active-fuchsia::-webkit-slider-thumb { background: #fff; border-color: #e879f9; box-shadow: 0 0 10px #e879f9, 0 0 20px #e879f9; }
-        input[type=range].active-fuchsia::-webkit-slider-runnable-track { background: #86198f; }
-
-        input[type=range].active-blue::-webkit-slider-thumb { background: #fff; border-color: #60a5fa; box-shadow: 0 0 10px #60a5fa, 0 0 20px #60a5fa; }
-        input[type=range].active-blue::-webkit-slider-runnable-track { background: #1e40af; }
-
-        /* NEW COLORS for Focal & Pan */
         input[type=range].active-orange::-webkit-slider-thumb { background: #fff; border-color: #f97316; box-shadow: 0 0 10px #f97316, 0 0 20px #f97316; }
-        input[type=range].active-orange::-webkit-slider-runnable-track { background: #c2410c; }
+        input[type=range].active-orange::-webkit-slider-runnable-track { background: #7c2d12; }
+
+        input[type=range].active-yellow::-webkit-slider-thumb { background: #fff; border-color: #eab308; box-shadow: 0 0 10px #eab308, 0 0 20px #eab308; }
+        input[type=range].active-yellow::-webkit-slider-runnable-track { background: #713f12; }
+
+        input[type=range].active-green::-webkit-slider-thumb { background: #fff; border-color: #22c55e; box-shadow: 0 0 10px #22c55e, 0 0 20px #22c55e; }
+        input[type=range].active-green::-webkit-slider-runnable-track { background: #14532d; }
+
+        input[type=range].active-blue::-webkit-slider-thumb { background: #fff; border-color: #3b82f6; box-shadow: 0 0 10px #3b82f6, 0 0 20px #3b82f6; }
+        input[type=range].active-blue::-webkit-slider-runnable-track { background: #1e3a8a; }
 
         input[type=range].active-indigo::-webkit-slider-thumb { background: #fff; border-color: #6366f1; box-shadow: 0 0 10px #6366f1, 0 0 20px #6366f1; }
-        input[type=range].active-indigo::-webkit-slider-runnable-track { background: #4338ca; }
+        input[type=range].active-indigo::-webkit-slider-runnable-track { background: #312e81; }
 
+        input[type=range].active-violet::-webkit-slider-thumb { background: #fff; border-color: #a855f7; box-shadow: 0 0 10px #a855f7, 0 0 20px #a855f7; }
+        input[type=range].active-violet::-webkit-slider-runnable-track { background: #581c87; }
 
         /* UI Elements */
-        .tick-marks { display: flex; justify-content: space-between; height: 4px; margin-top: 6px; padding: 0 6px; }
-        .tick { width: 1px; height: 4px; background-color: #444; }
+        .tick-marks { 
+            position: absolute;
+            top: 14px; 
+            left: 0; 
+            width: 100%; 
+            display: flex; 
+            justify-content: space-between; 
+            pointer-events: none; 
+            padding: 0 7px; 
+        }
+        .tick { width: 1px; height: 4px; background-color: #404040; }
+        
+        .label-marks {
+            position: relative;
+            width: 100%;
+            height: 12px;
+            margin-top: 2px;
+            pointer-events: none;
+        }
+        .slider-label {
+            position: absolute;
+            font-size: 8px;
+            font-family: 'JetBrains Mono', monospace;
+            color: #737373;
+            transform: translateX(-50%);
+            white-space: nowrap;
+        }
+
         ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: #000; }
         ::-webkit-scrollbar-thumb { background: #333; border-radius: 2px; }
@@ -102,10 +148,30 @@
         .remove-img-btn:hover { background: #ef4444; color: white; }
         .value-changed { color: #facc15 !important; text-shadow: 0 0 8px rgba(250, 204, 21, 0.5) !important; }
         
-        /* Interactive Cursor Styles */
-        #canvas-container.hover-subject { cursor: ew-resize; } /* For subject rotation */
-        #canvas-container.hover-camera { cursor: move; } /* For camera drag */
-        #canvas-container.dragging { cursor: grabbing !important; }
+        .prompt-output {
+            line-height: 1.6;
+            white-space: pre-wrap;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .section-header {
+            color: #94a3b8;
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 0.8rem;
+            margin-top: 2rem;
+            border-bottom: 1px solid #334155;
+            padding-bottom: 0.25rem;
+        }
+        
+        .logic-locked {
+            opacity: 0.3;
+            pointer-events: none;
+            filter: grayscale(100%);
+        }
+        
+        /* Prevent Drag Flicker */
+        .pointer-events-none { pointer-events: none; }
     </style>
 </head>
 <body>
@@ -113,7 +179,7 @@
 <div id="app" class="flex h-screen w-screen overflow-hidden">
     
     <!-- Sidebar Controls -->
-    <div class="w-full md:w-[400px] flex-shrink-0 glass-panel flex flex-col h-full z-10">
+    <div class="w-full md:w-[420px] flex-shrink-0 glass-panel flex flex-col h-full z-10">
         <div class="p-6 border-b border-gray-800/50 flex justify-between items-center relative overflow-hidden">
             <div class="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-transparent via-cyan-900 to-transparent opacity-50"></div>
             <div>
@@ -122,167 +188,223 @@
             </div>
         </div>
 
-        <div class="flex-1 overflow-y-auto p-6 space-y-8 custom-scrollbar">
+        <div class="flex-1 overflow-y-auto p-6 space-y-6 custom-scrollbar">
             
-            <!-- Image Upload -->
+            <!-- Mode Selector -->
             <div class="space-y-3">
-                <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">REFERENCE IMAGE</label>
-                <div class="relative group"
-                     @dragover.prevent="isDraggingOver = true" @dragleave.prevent="isDraggingOver = false" @drop.prevent="handleDrop">
-                    <input type="file" @change="handleImageUpload" accept="image/*" class="hidden" id="fileInput">
-                    <label for="fileInput" 
-                           class="flex flex-col items-center justify-center w-full h-32 border border-dashed rounded-lg cursor-pointer transition-all overflow-hidden relative"
-                           :class="isDraggingOver ? 'border-cyan-400 bg-cyan-900/20' : 'border-gray-700/60 hover:border-cyan-500/50 hover:bg-cyan-900/10 bg-black/40'">
-                        <div v-if="!hasImage && !isDraggingOver" class="text-center opacity-60 group-hover:opacity-100 transition duration-300">
-                            <span class="text-[10px] text-gray-400 tracking-wide">UPLOAD OR DRAG IMAGE</span>
-                        </div>
-                        <div v-if="isDraggingOver" class="absolute inset-0 flex items-center justify-center bg-black/60 z-20 backdrop-blur-sm">
-                            <span class="text-cyan-400 font-bold tracking-widest animate-pulse border border-cyan-500 px-3 py-1 rounded">DROP TO UPLOAD</span>
-                        </div>
-                        <img v-if="hasImage" :src="imagePreview" class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition">
-                    </label>
-                    <div v-if="hasImage" @click.stop.prevent="clearImage" class="remove-img-btn">CLEAR</div>
+                <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">PROMPT MODE (LOGIC LOCK)</label>
+                <div class="grid grid-cols-3 gap-3">
+                    <button @click="setMode('environment')" 
+                            class="px-2 py-3 rounded text-[10px] font-bold border transition-all duration-300 flex flex-col items-center gap-1"
+                            :class="params.mode === 'environment' ? 'bg-cyan-900/40 border-cyan-400 text-cyan-300 shadow-[0_0_15px_rgba(34,211,238,0.2)]' : 'bg-gray-900/50 border-gray-700 text-gray-500 hover:border-gray-500'">
+                        <span class="tracking-wide">ENVIRONMENT</span>
+                    </button>
+                    <button @click="setMode('object')" 
+                            class="px-2 py-3 rounded text-[10px] font-bold border transition-all duration-300 flex flex-col items-center gap-1"
+                            :class="params.mode === 'object' ? 'bg-amber-900/40 border-amber-400 text-amber-300 shadow-[0_0_15px_rgba(251,191,36,0.2)]' : 'bg-gray-900/50 border-gray-700 text-gray-500 hover:border-gray-500'">
+                        <span class="tracking-wide">OBJECT</span>
+                    </button>
+                    <button @click="setMode('living')" 
+                            class="px-2 py-3 rounded text-[10px] font-bold border transition-all duration-300 flex flex-col items-center gap-1"
+                            :class="params.mode === 'living' ? 'bg-rose-900/40 border-rose-400 text-rose-300 shadow-[0_0_15px_rgba(251,113,133,0.2)]' : 'bg-gray-900/50 border-gray-700 text-gray-500 hover:border-gray-500'">
+                        <span class="tracking-wide">LIVING</span>
+                    </button>
+                </div>
+                <div class="h-6 flex items-center">
+                    <p v-if="params.mode === 'environment'" class="text-[9px] text-cyan-500 font-mono">🔒 Object Rotation Disabled (Spatial Consistency)</p>
+                    <p v-if="params.mode !== 'environment' && isSubjectRotating" class="text-[9px] text-amber-500 font-mono">🔒 Camera Locked to Tripod (Subject is Spinning)</p>
+                    <p v-if="params.mode !== 'environment' && !isSubjectRotating" class="text-[9px] text-gray-500 font-mono">Camera Active • Subject Static</p>
                 </div>
             </div>
 
-            <!-- Controls -->
-            <div class="space-y-8" :class="{ 'opacity-30 pointer-events-none': matrixMode }">
+            <!-- Image Upload (Drag & Drop Fixed) -->
+            <div class="space-y-4">
+                <div class="relative group"
+                     @dragenter.prevent="handleDragEnter" 
+                     @dragleave.prevent="handleDragLeave" 
+                     @dragover.prevent 
+                     @drop.prevent="handleDrop">
+                    
+                    <input type="file" @change="handleImageUpload" accept="image/*" class="hidden" id="fileInput">
+                    <label for="fileInput" 
+                           class="flex flex-col items-center justify-center w-full h-28 border border-dashed rounded-lg cursor-pointer transition-all overflow-hidden relative"
+                           :class="isDraggingOver ? 'border-cyan-400 bg-cyan-900/20' : 'border-gray-700/60 hover:border-cyan-500/50 hover:bg-cyan-900/10 bg-black/40'">
+                        <div v-if="!hasImage && !isDraggingOver" class="text-center opacity-60 group-hover:opacity-100 transition duration-300 pointer-events-none">
+                            <span class="text-[10px] text-gray-400 tracking-wide font-bold">UPLOAD REFERENCE</span>
+                        </div>
+                        <div v-if="isDraggingOver" class="absolute inset-0 flex items-center justify-center bg-black/60 z-20 backdrop-blur-sm pointer-events-none">
+                            <span class="text-cyan-400 font-bold tracking-widest animate-pulse border border-cyan-500 px-3 py-1 rounded">DROP TO UPLOAD</span>
+                        </div>
+                        <img v-if="hasImage" :src="imagePreview" class="w-full h-full object-contain opacity-80 group-hover:opacity-100 transition pointer-events-none">
+                    </label>
+                    <div v-if="hasImage" @click.stop.prevent="clearImage" class="remove-img-btn">✕</div>
+                </div>
+            </div>
+
+            <!-- Controls Group -->
+            <div class="space-y-8"> 
                 
-                <!-- 1. Horizontal Orbit (Cyan) -->
-                <div>
-                    <div class="flex justify-between mb-2 items-end">
-                        <label class="text-[11px] font-medium text-gray-400">Horizontal Orbit</label>
-                        <span class="text-[10px] font-mono transition-colors duration-300" :class="params.horizontal !== 0 ? 'text-cyan-400 font-bold' : 'text-gray-600'">{{ getHorizontalLabel() }}</span>
-                    </div>
-                    <div class="relative h-6">
-                        <input type="range" v-model.number="horizontalIndex" min="0" :max="horizontalSteps.length - 1" step="1"
-                               :class="params.horizontal !== 0 ? 'active-cyan' : ''">
-                        <div class="tick-marks absolute w-full top-3 pointer-events-none opacity-40">
-                            <div v-for="step in horizontalSteps" :key="step" class="tick"></div>
+                <!-- CAMERA POSITION -->
+                <div :class="{ 'logic-locked': isSubjectRotating }">
+                    <div class="section-header">CAMERA POSITION</div>
+                    
+                    <!-- 1. Horizontal Orbit (Red) -->
+                    <div class="mb-7"> 
+                        <div class="flex justify-between mb-2 items-end">
+                            <label class="text-[11px] font-medium text-gray-400">Horizontal Orbit</label>
+                            <span class="text-[10px] font-mono transition-colors duration-300" :class="isValActive(params.horizontalIndex, 0) ? 'text-red-400 font-bold' : 'text-gray-600'">{{ getHorizontalLabel() }}</span>
                         </div>
-                        <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
-                            <span>L</span><span>0</span><span>R</span>
+                        <div class="relative h-8">
+                            <input type="range" v-model.number="params.horizontalIndex" min="0" :max="horizontalSteps.length - 1" step="1"
+                                   :class="isValActive(params.horizontalIndex, 0) ? 'active-red' : ''">
+                            <div class="tick-marks">
+                                <div v-for="i in horizontalSteps.length" :key="i" class="tick"></div>
+                            </div>
+                            <div class="label-marks">
+                                <span class="slider-label" style="left: 0%">N/A</span>
+                                <span class="slider-label" style="left: 7.7%">L</span>
+                                <span class="slider-label" style="left: 53.8%">FRONT</span>
+                                <span class="slider-label" style="left: 100%">R</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Vertical Angle (Orange) -->
+                    <div class="mb-7">
+                        <div class="flex justify-between mb-2 items-end">
+                            <label class="text-[11px] font-medium text-gray-400">Vertical Angle</label>
+                            <span class="text-[10px] font-mono transition-colors duration-300" :class="isValActive(params.angleIndex, 0) ? 'text-orange-400 font-bold' : 'text-gray-600'">{{ angleLevels[params.angleIndex].label }}</span>
+                        </div>
+                        <div class="relative h-8">
+                            <input type="range" v-model.number="params.angleIndex" min="0" :max="angleLevels.length - 1" step="1"
+                                   :class="isValActive(params.angleIndex, 0) ? 'active-orange' : ''">
+                            <div class="tick-marks">
+                                <div v-for="i in angleLevels.length" :key="i" class="tick"></div>
+                            </div>
+                            <div class="label-marks">
+                                <span class="slider-label" style="left: 0%">N/A</span>
+                                <span class="slider-label" style="left: 10%">NADIR</span>
+                                <span class="slider-label" style="left: 60%">LEVEL</span>
+                                <span class="slider-label" style="left: 100%">GOD'S EYE</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Camera Height (Yellow) -->
+                    <div class="mb-7">
+                        <div class="flex justify-between mb-2 items-end">
+                            <label class="text-[11px] font-medium text-gray-400">Camera Height</label>
+                            <span class="text-[10px] font-mono transition-colors duration-300" :class="isValActive(params.heightIndex, 0) ? 'text-yellow-400 font-bold' : 'text-gray-600'">{{ heightLevels[params.heightIndex].label }}</span>
+                        </div>
+                        <div class="relative h-8">
+                            <input type="range" v-model.number="params.heightIndex" min="0" :max="heightLevels.length - 1" step="1"
+                                   :class="isValActive(params.heightIndex, 0) ? 'active-yellow' : ''">
+                            <div class="tick-marks">
+                                <div v-for="i in heightLevels.length" :key="i" class="tick"></div>
+                            </div>
+                            <div class="label-marks">
+                                <span class="slider-label" style="left: 0%">N/A</span>
+                                <span class="slider-label" style="left: 20%">GND</span>
+                                <span class="slider-label" style="left: 60%">HIP</span>
+                                <span class="slider-label" style="left: 100%">EYE</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Distance (Green) -->
+                    <div class="mb-7">
+                        <div class="flex justify-between mb-2 items-end">
+                            <label class="text-[11px] font-medium text-gray-400">Shot Distance</label>
+                            <span class="text-[10px] font-mono transition-colors duration-300" :class="isValActive(params.distanceIndex, 0) ? 'text-emerald-400 font-bold' : 'text-gray-600'">{{ distanceLevels[params.distanceIndex].label }}</span>
+                        </div>
+                        <div class="relative h-8">
+                            <input type="range" v-model.number="params.distanceIndex" min="0" :max="distanceLevels.length - 1" step="1"
+                                   :class="isValActive(params.distanceIndex, 0) ? 'active-green' : ''">
+                            <div class="tick-marks">
+                                <div v-for="i in distanceLevels.length" :key="i" class="tick"></div>
+                            </div>
+                             <div class="label-marks">
+                                <span class="slider-label" style="left: 0%">N/A</span>
+                                <span class="slider-label" style="left: 8.3%">PROBE</span>
+                                <span class="slider-label" style="left: 58.3%">MED</span>
+                                <span class="slider-label" style="left: 100%">EWS</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 2. Vertical Angle (Violet) -->
+                <!-- CAMERA MOVEMENT -->
+                <div :class="{ 'logic-locked': isSubjectRotating }">
+                    <div class="section-header">CAMERA MOVEMENT</div>
+                     <div class="grid grid-cols-3 gap-6 mb-7"> 
+                        <!-- Pan (Blue) -->
+                        <div>
+                            <div class="flex justify-between mb-2 items-end">
+                                <label class="text-[10px] font-medium text-gray-400">Pan</label>
+                                <span class="text-[9px] font-mono" :class="params.pan !== 0 ? 'text-blue-400' : 'text-gray-600'">{{ params.pan === 0 ? '0' : (params.pan === -1 ? 'L' : 'R') }}</span>
+                            </div>
+                            <div class="relative h-8">
+                                <input type="range" v-model.number="params.pan" min="-1" max="1" step="1" :class="params.pan !== 0 ? 'active-blue' : ''">
+                                <div class="flex justify-between text-[9px] text-gray-600 mt-1 px-1 font-mono select-none"><span>L</span><span>-</span><span>R</span></div>
+                            </div>
+                        </div>
+                        <!-- Tilt (Blue) -->
+                        <div>
+                            <div class="flex justify-between mb-2 items-end">
+                                <label class="text-[10px] font-medium text-gray-400">Tilt</label>
+                                <span class="text-[9px] font-mono" :class="params.tilt !== 0 ? 'text-blue-400' : 'text-gray-600'">{{ params.tilt === 0 ? '0' : (params.tilt > 0 ? 'UP' : 'DN') }}</span>
+                            </div>
+                            <div class="relative h-8">
+                                <input type="range" v-model.number="params.tilt" min="-1" max="1" step="1" :class="params.tilt !== 0 ? 'active-blue' : ''">
+                                <div class="flex justify-between text-[9px] text-gray-600 mt-1 px-1 font-mono select-none"><span>DN</span><span>-</span><span>UP</span></div>
+                            </div>
+                        </div>
+                         <!-- Roll (Blue) -->
+                         <div>
+                            <div class="flex justify-between mb-2 items-end">
+                                <label class="text-[10px] font-medium text-gray-400">Roll</label>
+                                <span class="text-[9px] font-mono" :class="params.roll !== 0 ? 'text-blue-400' : 'text-gray-600'">{{ params.roll === 0 ? '0' : 'DT' }}</span>
+                            </div>
+                            <div class="relative h-8">
+                                <input type="range" v-model.number="params.roll" min="-45" max="45" step="45" :class="params.roll !== 0 ? 'active-blue' : ''">
+                                 <div class="flex justify-between text-[9px] text-gray-600 mt-1 px-1 font-mono select-none"><span>L</span><span>-</span><span>R</span></div>
+                            </div>
+                        </div>
+                     </div>
+                </div>
+
+                <!-- LENS OPTICS -->
                 <div>
-                    <div class="flex justify-between mb-2 items-end">
-                        <label class="text-[11px] font-medium text-gray-400">Vertical Angle</label>
-                        <span class="text-[10px] font-mono transition-colors duration-300" :class="params.angleIndex !== 5 ? 'text-violet-400 font-bold' : 'text-gray-600'">{{ angleLevels[params.angleIndex].label }}</span>
-                    </div>
-                    <div class="relative h-6">
-                        <input type="range" v-model.number="params.angleIndex" min="0" :max="angleLevels.length - 1" step="1"
-                               :class="params.angleIndex !== 5 ? 'active-violet' : ''">
-                        <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
-                            <span>LOW</span><span>LEVEL</span><span>HIGH</span>
+                    <div class="section-header">LENS OPTICS</div>
+                    <div class="mb-7">
+                        <div class="flex justify-between mb-2 items-end">
+                            <label class="text-[11px] font-medium text-gray-400">Focal Length</label>
+                            <span class="text-[10px] font-mono transition-colors duration-300" :class="params.focalIndex !== 0 ? 'text-indigo-400 font-bold' : 'text-gray-600'">{{ getFocalLabel() }}</span>
+                        </div>
+                        <div class="relative h-8">
+                            <input type="range" v-model.number="params.focalIndex" min="0" :max="focalSteps.length - 1" step="1"
+                                   :class="params.focalIndex !== 0 ? 'active-indigo' : ''">
+                            <div class="flex justify-between text-[9px] text-gray-600 mt-1 px-1 font-mono w-full select-none">
+                                <span>WIDE</span><span>STD</span><span>TELE</span>
+                            </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- 3. Camera Height (Amber) - REVERSED -->
-                <div>
-                    <div class="flex justify-between mb-2 items-end">
-                        <label class="text-[11px] font-medium text-gray-400">Camera Height</label>
-                        <span class="text-[10px] font-mono transition-colors duration-300" :class="params.heightIndex !== 4 ? 'text-amber-400 font-bold' : 'text-gray-600'">{{ heightLevels[params.heightIndex].label }}</span>
-                    </div>
-                    <div class="relative h-6">
-                        <input type="range" v-model.number="params.heightIndex" min="0" :max="heightLevels.length - 1" step="1"
-                               :class="params.heightIndex !== 4 ? 'active-amber' : ''">
-                        <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
-                            <span>GND</span><span>HIP</span><span>EYE</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 4. Distance (Emerald) -->
-                <div>
-                    <div class="flex justify-between mb-2 items-end">
-                        <label class="text-[11px] font-medium text-gray-400">Shot Distance</label>
-                        <span class="text-[10px] font-mono transition-colors duration-300" :class="params.distanceIndex !== 6 ? 'text-emerald-400 font-bold' : 'text-gray-600'">{{ distanceLevels[params.distanceIndex].label }}</span>
-                    </div>
-                    <div class="relative h-6">
-                        <input type="range" v-model.number="params.distanceIndex" min="0" :max="distanceLevels.length - 1" step="1"
-                               :class="params.distanceIndex !== 6 ? 'active-emerald' : ''">
-                        <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
-                             <span>CLOSE</span><span>MID</span><span>WIDE</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 5. Camera Motion Group: Pan | Tilt | Roll -->
-                 <div class="grid grid-cols-3 gap-3">
-                    <!-- Pan (Indigo) -->
+                <!-- SUBJECT (Locked in Environment Mode) -->
+                <div :class="{ 'logic-locked': params.mode === 'environment' }">
+                    <div class="section-header">SUBJECT CONTROL</div>
                     <div>
                         <div class="flex justify-between mb-2 items-end">
-                            <label class="text-[10px] font-medium text-gray-400">Pan</label>
-                            <span class="text-[9px] font-mono transition-colors duration-300" :class="params.pan !== 0 ? 'text-indigo-400 font-bold' : 'text-gray-600'">{{ params.pan === 0 ? '0' : (params.pan === -1 ? 'L' : 'R') }}</span>
+                            <label class="text-[11px] font-medium text-gray-400">Object Rotation</label>
+                            <span class="text-[10px] font-mono transition-colors duration-300" :class="params.subjectRot !== 0 ? 'text-violet-400 font-bold' : 'text-gray-600'">{{ getSubjectRotLabel() }}</span>
                         </div>
-                        <div class="relative">
-                            <input type="range" v-model.number="params.pan" min="-1" max="1" step="1"
-                                :class="params.pan !== 0 ? 'active-indigo' : ''">
-                            <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
-                                <span>L</span><span>-</span><span>R</span>
+                        <div class="relative h-8">
+                            <input type="range" v-model.number="params.subjectRot" min="-180" max="180" step="45"
+                               :class="params.subjectRot !== 0 ? 'active-violet' : ''">
+                             <div class="flex justify-between text-[9px] text-gray-600 mt-1 px-1 font-mono w-full select-none">
+                                <span>L</span><span>0</span><span>R</span>
                             </div>
-                        </div>
-                    </div>
-                    <!-- Tilt (Rose) -->
-                    <div>
-                        <div class="flex justify-between mb-2 items-end">
-                            <label class="text-[10px] font-medium text-gray-400">Tilt</label>
-                            <span class="text-[9px] font-mono transition-colors duration-300" :class="params.tilt !== 0 ? 'text-rose-400 font-bold' : 'text-gray-600'">{{ params.tilt === 0 ? '0' : (params.tilt > 0 ? 'UP' : 'DN') }}</span>
-                        </div>
-                        <div class="relative">
-                            <input type="range" v-model.number="params.tilt" min="-1" max="1" step="1"
-                                :class="params.tilt !== 0 ? 'active-rose' : ''">
-                            <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
-                                <span>DN</span><span>-</span><span>UP</span>
-                            </div>
-                        </div>
-                    </div>
-                     <!-- Roll (Fuchsia) -->
-                     <div>
-                        <div class="flex justify-between mb-2 items-end">
-                            <label class="text-[10px] font-medium text-gray-400">Roll</label>
-                            <span class="text-[9px] font-mono transition-colors duration-300" :class="params.roll !== 0 ? 'text-fuchsia-400 font-bold' : 'text-gray-600'">{{ params.roll === 0 ? '0' : 'DT' }}</span>
-                        </div>
-                        <div class="relative">
-                            <input type="range" v-model.number="params.roll" min="-45" max="45" step="45"
-                                :class="params.roll !== 0 ? 'active-fuchsia' : ''">
-                             <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
-                                <span>L</span><span>-</span><span>R</span>
-                            </div>
-                        </div>
-                    </div>
-                 </div>
-
-                <!-- 6. Focal Length (Orange) -->
-                <div>
-                    <div class="flex justify-between mb-2 items-end">
-                        <label class="text-[11px] font-medium text-gray-400">Focal Length (Zoom)</label>
-                        <span class="text-[10px] font-mono transition-colors duration-300" :class="params.focalIndex !== 0 ? 'text-orange-500 font-bold' : 'text-gray-600'">{{ getFocalLabel() }}</span>
-                    </div>
-                    <div class="relative h-6">
-                        <input type="range" v-model.number="params.focalIndex" min="0" :max="focalSteps.length - 1" step="1"
-                               :class="params.focalIndex !== 0 ? 'active-orange' : ''">
-                         <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
-                            <span>WIDE</span><span>STD</span><span>TELE</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- 7. Subject Rotation (Blue) -->
-                <div>
-                    <div class="flex justify-between mb-2 items-end">
-                        <label class="text-[11px] font-medium text-gray-400">Object Rotation</label>
-                        <span class="text-[10px] font-mono transition-colors duration-300" :class="params.subjectRot !== 0 ? 'text-blue-400 font-bold' : 'text-gray-600'">{{ getSubjectRotLabel() }}</span>
-                    </div>
-                    <div class="relative h-6">
-                        <input type="range" v-model.number="params.subjectRot" min="-180" max="180" step="45"
-                           :class="params.subjectRot !== 0 ? 'active-blue' : ''">
-                         <div class="flex justify-between text-[9px] text-gray-500 mt-2 px-1 font-mono w-full">
-                            <span>L</span><span>0</span><span>R</span>
                         </div>
                     </div>
                 </div>
@@ -290,7 +412,7 @@
             </div>
 
              <!-- Prompt Output Area -->
-             <div class="mt-8 pt-6 border-t border-gray-800/50 pb-12">
+             <div class="mt-10 pt-6 border-t border-gray-800/50 pb-12">
                 <div class="flex justify-between items-center mb-3">
                     <label class="text-[10px] font-bold text-gray-500 uppercase tracking-widest">Nano Banana Prompt</label>
                     <div class="flex gap-2">
@@ -304,13 +426,12 @@
                         </button>
                     </div>
                 </div>
-                <div class="bg-black/80 p-4 rounded border border-gray-700/50 font-mono text-xs text-cyan-100/90 break-words min-h-[100px] leading-relaxed select-all shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] border-l-2 border-l-cyan-500">
-                    <span v-if="!generatedPrompt" class="text-gray-600 italic">// Configure rig to generate command sequence...</span>
-                    {{ generatedPrompt }}
+                <div class="bg-black/80 p-4 rounded border border-gray-700/50 font-mono text-xs text-cyan-100/90 break-words min-h-[150px] leading-relaxed select-all shadow-[inset_0_0_20px_rgba(0,0,0,0.8)] border-l-2 border-l-cyan-500 prompt-output">
+                    {{ generatedPrompt || "// Configure rig to generate structured command sequence..." }}
                 </div>
             </div>
 
-            <!-- Matrix Mode (MOVED TO BOTTOM) -->
+            <!-- Matrix Mode (Bottom) -->
             <div class="bg-gray-900/40 border border-gray-700/50 rounded-lg p-3 hover:border-gray-600 transition duration-300">
                 <label class="flex items-center cursor-pointer space-x-3 select-none">
                     <div class="relative">
@@ -331,7 +452,7 @@
     <div class="flex-1 relative bg-[#050505] cursor-default group" id="canvas-container">
         <!-- PIP View -->
         <div class="pip-container">
-            <div class="pip-label">REC <span class="text-[8px] text-gray-300 font-normal ml-1">{{ hasImage ? 'LIVE' : 'NO SIGNAL' }}</span></div>
+            <div class="pip-label">REC • PRO CAM</div>
             <div id="pip-canvas" class="w-full h-full"></div>
         </div>
         <!-- Hint -->
@@ -364,18 +485,20 @@
             const copied = ref(false);
             const isDraggingOver = ref(false);
 
-            // --- DATA DEFINITIONS ---
-            const horizontalSteps = [-180, -135, -90, -60, -45, -30, 0, 30, 45, 60, 90, 135, 180];
+            // --- DATA DEFINITIONS (With N/A at Index 0) ---
+            
+            const horizontalSteps = [null, -180, -135, -90, -60, -45, -30, 0, 30, 45, 60, 90, 135, 180];
             const focalSteps = [0, 6, 8, 11, 12, 13, 14, 16, 20, 24, 28, 35, 50, 85, 100, 135, 200, 300, 400, 500, 600, 800, 1200, 2000];
 
             const distanceLevels = [
+                { label: "N/A", prompt: null, radius: 4.0 }, 
                 { label: "Probe Lens", prompt: "Probe Lens", radius: 0.5, parallax: "[Parallax]: Background extremely blurred with intense bokeh due to macro depth of field." },
                 { label: "Macro", prompt: "Macro Shot", radius: 0.8, parallax: "[Parallax]: Background becomes an abstract wash of color; depth of field is paper-thin." },
                 { label: "Detail", prompt: "Detail Shot", radius: 1.2, parallax: "[Parallax]: Background details are softened to emphasize foreground texture." },
                 { label: "ECU", prompt: "Extreme Close-Up (ECU)", radius: 1.6, parallax: "[Parallax]: Background compression isolates the facial features completely." },
                 { label: "Close-Up", prompt: "Close-Up (CU)", radius: 2.2, parallax: "[Parallax]: Background blur increases to separate subject from environment." },
                 { label: "MCU", prompt: "Medium Close-Up (MCU)", radius: 3.0, parallax: "[Parallax]: Slight background compression, maintaining focus on expression." },
-                { label: "Medium", prompt: "Medium Shot (MS)", radius: 4.0, parallax: "" }, // Default [6]
+                { label: "Medium", prompt: "Medium Shot (MS)", radius: 4.0, parallax: "" }, 
                 { label: "Cowboy", prompt: "Cowboy Shot", radius: 5.5, parallax: "[Parallax]: Background reveals more waist-level environment context." },
                 { label: "MLS", prompt: "Medium Long Shot (MLS)", radius: 6.5, parallax: "[Parallax]: Background elements scale down relative to the subject." },
                 { label: "Full", prompt: "Full Shot", radius: 7.5, parallax: "[Parallax]: Full environmental context visible; ground plane interaction is clear." },
@@ -384,201 +507,257 @@
             ];
 
             const angleLevels = [
-                { label: "Nadir (Direct Bottom)", prompt: "Nadir View", phi: 179, parallax: "[Parallax]: Background becomes the sky/ceiling directly above." },
-                { label: "Undershot", prompt: "Undershot", phi: 160, parallax: "[Parallax]: Steep upward angle, subject towers over the frame." }, // Separated
+                { label: "N/A", prompt: null, phi: 90 }, 
+                { label: "Nadir", prompt: "Nadir View", phi: 179, parallax: "[Parallax]: Background becomes the sky/ceiling directly above." },
+                { label: "Undershot", prompt: "Undershot", phi: 160, parallax: "[Parallax]: Steep upward angle, subject towers over the frame." },
                 { label: "Worm's Eye", prompt: "Worm's Eye View", phi: 140, parallax: "[Parallax]: Extreme low perspective looking up; imposing scale." },
-                { label: "Frog's Eye", prompt: "Frog's Eye View", phi: 120, parallax: "[Parallax]: Ground level gaze; floor texture dominant in foreground." }, // Added
+                { label: "Frog's Eye", prompt: "Frog's Eye View", phi: 120, parallax: "[Parallax]: Ground level gaze; floor texture dominant in foreground." },
                 { label: "Low Angle", prompt: "Low Angle Shot", phi: 105, parallax: "[Parallax]: Horizon drops; background reveals more sky/ceiling." },
-                { label: "Level (0°)", prompt: "", phi: 90, parallax: "" }, // Default [5]
+                { label: "Level (0°)", prompt: "Eye-Level Shot", phi: 90, parallax: "" }, 
                 { label: "High Angle", prompt: "High Angle Shot", phi: 70, parallax: "[Parallax]: Horizon rises; ground becomes more visible." },
                 { label: "Bird's Eye", prompt: "Bird's Eye View", phi: 45, parallax: "[Parallax]: Elevated view; spatial layout becomes clear." },
-                { label: "Overhead", prompt: "Overhead Shot", phi: 25, parallax: "[Parallax]: Near-vertical view; geometry flattens onto the ground plane." }, // Added
+                { label: "Overhead", prompt: "Overhead Shot", phi: 25, parallax: "[Parallax]: Near-vertical view; geometry flattens onto the ground plane." },
                 { label: "God's Eye", prompt: "God's Eye View", phi: 1, parallax: "[Parallax]: Top-down map view; total spatial overview." }
             ];
 
-            // REVERSED ORDER for Slider (0=GND, 4=EYE)
             const heightLevels = [
+                { label: "N/A", prompt: null, yOffset: 1.6 }, 
                 { label: "Ground Level", prompt: "Ground Level Shot", yOffset: 0.1 },
                 { label: "Knee Level", prompt: "Knee Level Shot", yOffset: 0.5 },
                 { label: "Hip Level", prompt: "Hip Level Shot", yOffset: 0.9 },
                 { label: "Shoulder Level", prompt: "Shoulder Level Shot", yOffset: 1.4 },
-                { label: "Eye-Level", prompt: "", yOffset: 1.6 } // Default [4]
+                { label: "Eye-Level", prompt: "Eye-Level", yOffset: 1.6 }
             ];
 
             const params = ref({
-                horizontal: 0,
-                angleIndex: 5,    // Default Level (Index 5)
-                heightIndex: 4,   // Default Eye-Level (Now Index 4)
-                distanceIndex: 6, // Default Medium
-                focalIndex: 0, // Default Off
-                pan: 0, // -1 Left, 0 Off, 1 Right
+                mode: 'object',
+                horizontalIndex: 0, // N/A
+                angleIndex: 0,      // N/A
+                heightIndex: 0,     // N/A
+                distanceIndex: 0,   // N/A
+                focalIndex: 0,
+                pan: 0,
                 tilt: 0,
                 roll: 0,
                 subjectRot: 0
             });
 
-            // Computed for Horizontal Slider
-            const horizontalIndex = computed({
-                get: () => horizontalSteps.indexOf(params.value.horizontal),
-                set: (idx) => { params.value.horizontal = horizontalSteps[idx]; }
-            });
+            // Logic Lock State
+            const isSubjectRotating = computed(() => params.value.subjectRot !== 0 && params.value.mode !== 'environment');
+            
+            // Helper to check if a slider is active (not N/A or 0)
+            const isValActive = (val, defaultVal) => val !== defaultVal;
+
+            const setMode = (m) => {
+                params.value.mode = m;
+                if (m === 'environment') {
+                    params.value.subjectRot = 0; 
+                }
+            };
 
             const resetAll = () => {
-                params.value = {
-                    horizontal: 0,
-                    angleIndex: 5,
-                    heightIndex: 4, // Reset to Eye-Level (Index 4)
-                    distanceIndex: 6,
-                    focalIndex: 0,
-                    pan: 0,
-                    tilt: 0,
-                    roll: 0,
-                    subjectRot: 0
-                };
+                params.value.horizontalIndex = 0; // N/A
+                params.value.angleIndex = 0;      // N/A
+                params.value.heightIndex = 0;     // N/A
+                params.value.distanceIndex = 0;   // N/A
+                params.value.focalIndex = 0;
+                params.value.pan = 0;
+                params.value.tilt = 0;
+                params.value.roll = 0;
+                params.value.subjectRot = 0;
             };
 
-            // --- Prompt Logic ---
-            const getHorizontalPrompt = () => {
-                const h = params.value.horizontal;
-                if (h === 0) return "[Camera]: 0° Frontal View. [Orientation]: Subject facing directly at camera. [Logic]: Static background, perfect symmetry.";
+            // --- Structured Prompt Logic ---
+            const getHorizontalData = () => {
+                const h = horizontalSteps[params.value.horizontalIndex];
+                if (h === null) return null; // N/A
                 
+                if (h === 0) return { view: "Frontal View", orient: "Subject facing directly at camera" };
                 const absH = Math.abs(h);
-                // Swapped Left/Right logic to correct for AI interpretation
-                // If Slider is Positive (Right), prompts are "Right"
-                if (h > 0) {
-                    if (absH <= 30) return `[Camera]: 30° Right, slight angle. [Orientation]: Subject facing slightly screen-left. [Logic]: Parallax background movement from right to left.`;
-                    if (absH <= 45) return `[Camera]: 45° Right, standard 3/4 view. [Orientation]: Subject facing screen-left. [Logic]: Background shifts left relative to subject.`;
-                    if (absH <= 60) return `[Camera]: 60° Right, deep angle. [Orientation]: Subject facing sharply screen-left. [Logic]: Significant background shift to the left.`;
-                    if (absH <= 90) return `[Camera]: 90° Right side, full profile view. [Orientation]: Subject facing screen-left. [Logic]: Parallax background movement from right to left.`;
-                    if (absH <= 135) return `[Camera]: 135° Right-Rear, over-the-shoulder. [Orientation]: Subject facing away towards screen-left. [Logic]: Background transitions to rear view.`;
-                    return `[Camera]: 180° Direct Rear. [Orientation]: Subject facing away from camera. [Logic]: Full rear landscape view.`;
+                if (h > 0) { 
+                    if (absH <= 30) return { view: "Slightly Angled Right", orient: "Subject facing slightly screen-left" };
+                    if (absH <= 45) return { view: "3/4 Right View", orient: "Subject facing screen-left" };
+                    if (absH === 60) return { view: "Deep Angled Right View", orient: "Subject facing screen-left" }; // 60 deg specific
+                    if (absH <= 90) return { view: "Right Profile View", orient: "Subject facing screen-left" };
+                    if (absH <= 135) return { view: "Right-Rear View", orient: "Subject facing away to screen-left" };
+                    return { view: "Back View", orient: "Subject facing away" };
                 } 
-                if (h < 0) {
-                    if (absH <= 30) return `[Camera]: 30° Left, slight angle. [Orientation]: Subject facing slightly screen-right. [Logic]: Parallax background movement from left to right.`;
-                    if (absH <= 45) return `[Camera]: 45° Left, standard 3/4 view. [Orientation]: Subject facing screen-right. [Logic]: Background shifts right relative to subject.`;
-                    if (absH <= 60) return `[Camera]: 60° Left, deep angle. [Orientation]: Subject facing sharply screen-right. [Logic]: Significant background shift to the right.`;
-                    if (absH <= 90) return `[Camera]: 90° Left side, full profile view. [Orientation]: Subject facing screen-right. [Logic]: Parallax background movement from left to right.`;
-                    if (absH <= 135) return `[Camera]: 135° Left-Rear, over-the-shoulder. [Orientation]: Subject facing away towards screen-right. [Logic]: Background transitions to rear view.`;
-                    return `[Camera]: 180° Direct Rear. [Orientation]: Subject facing away from camera. [Logic]: Full rear landscape view.`;
-                }
-                return "";
+                if (absH <= 30) return { view: "Slightly Angled Left", orient: "Subject facing slightly screen-right" };
+                if (absH <= 45) return { view: "3/4 Left View", orient: "Subject facing screen-right" };
+                if (absH === 60) return { view: "Deep Angled Left View", orient: "Subject facing screen-right" }; // 60 deg specific
+                if (absH <= 90) return { view: "Left Profile View", orient: "Subject facing screen-right" };
+                if (absH <= 135) return { view: "Left-Rear View", orient: "Subject facing away to screen-right" };
+                return { view: "Back View", orient: "Subject facing away" };
             };
-
+            
             const getHorizontalLabel = () => {
-                const h = params.value.horizontal;
+                const h = horizontalSteps[params.value.horizontalIndex];
+                if (h === null) return "N/A";
                 if (h === 0) return "FRONT";
                 return `${Math.abs(h)}° ${h > 0 ? 'R' : 'L'}`;
             };
-
-            const getAnglePrompt = () => {
-                const idx = params.value.angleIndex;
-                if (idx === 5) return "";
-                const data = angleLevels[idx];
-                return `Adjust camera angle to ${data.prompt}. ${data.parallax}`;
-            };
-
-            const getHeightPrompt = () => {
-                const idx = params.value.heightIndex;
-                if (idx === 4) return ""; // Default Eye-Level (Now Index 4)
-                return `Position camera at ${heightLevels[idx].prompt}. [Parallax]: Perspective shifts vertically to match ${heightLevels[idx].label} height relative to subject.`;
-            };
-
-            const getDistancePrompt = () => {
-                const idx = params.value.distanceIndex;
-                if (idx === 6) return ""; 
-                const data = distanceLevels[idx];
-                return `Change shot size to ${data.prompt}. ${data.parallax}`;
-            };
-
+            
             const getFocalLabel = () => {
                 const fl = focalSteps[params.value.focalIndex];
                 if(fl === 0) return "DEFAULT";
                 return `${fl}mm`;
             };
-
-            const getFocalPrompt = () => {
-                const fl = focalSteps[params.value.focalIndex];
-                if(fl === 0) return "";
-                if(fl <= 16) return `Shot on ${fl}mm Ultra-Wide Fisheye lens. [Visual]: Extreme barrel distortion, exaggerated perspective depth.`;
-                if(fl <= 35) return `Shot on ${fl}mm Wide Angle lens. [Visual]: Expanded field of view, dynamic perspective.`;
-                if(fl <= 50) return `Shot on ${fl}mm Standard lens. [Visual]: Natural human eye perspective, minimal distortion.`;
-                if(fl <= 100) return `Shot on ${fl}mm Portrait Telephoto lens. [Visual]: Flattering compression, subject isolation, soft bokeh.`;
-                if(fl <= 2000) return `Shot on ${fl}mm Super Telephoto lens. [Visual]: Extreme background compression, flat perspective, subject pulled close to background.`;
-                return "";
-            };
-
-            const getPanPrompt = () => {
-                if(params.value.pan === -1) return "Camera Pans Left. [Motion]: View sweeps left, revealing scene to the left.";
-                if(params.value.pan === 1) return "Camera Pans Right. [Motion]: View sweeps right, revealing scene to the right.";
-                return "";
-            };
-
-            const getRollPrompt = () => params.value.roll !== 0 ? "Apply a Dutch Angle tilt. [Parallax]: Horizon line tilts diagonally matching the roll angle." : "";
-            const getTiltPrompt = () => params.value.tilt !== 0 ? (params.value.tilt > 0 ? "Tilt Up. [Parallax]: Vertical perspective converges upwards." : "Tilt Down. [Parallax]: Vertical perspective converges downwards.") : "";
             
-            const getSubjectRotPrompt = () => {
-                const r = params.value.subjectRot;
-                if (r === 0) return "";
-                if (Math.abs(r) === 90) return "Rotate the object itself to reveal its Side Profile. [Constraint]: Camera fixed. Background must remain static and unchanged.";
-                if (Math.abs(r) === 180) return "Rotate the object itself to reveal its Back View. [Constraint]: Camera fixed. Background must remain static and unchanged.";
-                return `Rotate the object itself ${r} degrees. [Constraint]: Camera fixed. Background must remain static and unchanged.`;
-            };
             const getSubjectRotLabel = () => params.value.subjectRot === 0 ? "FRONT" : `${params.value.subjectRot}°`;
 
+
             const generatedPrompt = computed(() => {
-                if (matrixMode.value) return "Matrix Mode: [Generating 12-Angle Sequence...]";
-                let commands = [];
-                const p_hor = getHorizontalPrompt();
-                const p_ang = getAnglePrompt();
-                const p_hgt = getHeightPrompt();
-                const p_foc = getFocalPrompt();
-                const p_dist = getDistancePrompt();
-                const p_pan = getPanPrompt();
-                const p_roll = getRollPrompt();
-                const p_tilt = getTiltPrompt();
-                const p_sub = getSubjectRotPrompt();
+                const p = params.value;
+                const isSubRot = p.subjectRot !== 0;
 
-                if (p_hor) commands.push(p_hor);
-                if (p_ang) commands.push(p_ang);
-                if (p_hgt) commands.push(p_hgt);
-                if (p_pan) commands.push(p_pan); // Pan should be prioritized as motion
-                if (p_roll) commands.push(p_roll);
-                if (p_tilt) commands.push(p_tilt);
-                if (p_foc) commands.push(p_foc);
-                if (p_dist) commands.push(p_dist);
-                if (p_sub) commands.push(p_sub);
+                // 1. [Core Setup]
+                let coreParts = [];
+                // Lens/Focal (Updated Descriptions)
+                const fl = focalSteps[p.focalIndex];
+                if (fl > 0) {
+                     let desc = "";
+                     if(fl <= 8) desc = "Circular Fisheye lens, extreme spherical distortion";
+                     else if(fl <= 14) desc = "Ultra-Wide Angle, exaggerated perspective";
+                     else if(fl === 16) desc = "Full-Frame Fisheye";
+                     else if(fl <= 35) desc = "Wide Angle lens";
+                     else if(fl === 50) desc = "Standard lens, natural human vision";
+                     else if(fl <= 200) desc = "Short Telephoto, portrait compression";
+                     else desc = "Super Telephoto, extreme spatial compression, flattened depth";
+                     
+                     coreParts.push(`Shot on ${fl}mm (${desc})`);
+                }
+                
+                // Composition (Skip N/A)
+                const distData = distanceLevels[p.distanceIndex];
+                if(distData.prompt) coreParts.push(distData.prompt);
 
-                if (commands.length === 0) return "";
+                const angleData = angleLevels[p.angleIndex];
+                if(angleData.prompt) coreParts.push(angleData.prompt);
 
-                let anchor = "Maintaining strict consistency with all subject details, lighting, and background elements of the reference image.";
-                if (p_sub) anchor = "The camera remains fixed. Background and lighting must stay static and identical to reference.";
+                const heightData = heightLevels[p.heightIndex];
+                if(heightData.prompt) coreParts.push(heightData.prompt);
 
-                return commands.join(", ") + ". " + anchor;
+                const horizData = getHorizontalData();
+                if(horizData) coreParts.push(`${horizData.view}, ${horizData.orient}`);
+                
+                // If subject rotating in Obj/Living, force tripod
+                if (p.mode !== 'environment' && isSubRot) {
+                     coreParts.push("Fixed Camera (Tripod)");
+                }
+                
+                // 2. [Primary Motion]
+                let motionParts = [];
+                const hasCamMove = p.pan !== 0 || p.tilt !== 0 || p.roll !== 0;
+                
+                // Horizontal Value for Motion (if not N/A)
+                const hVal = horizontalSteps[p.horizontalIndex];
+
+                if (p.mode === 'environment') {
+                    if (hasCamMove) {
+                        let moves = [];
+                        if (p.pan !== 0) moves.push(p.pan === -1 ? "Pan Left" : "Pan Right");
+                        if (p.tilt !== 0) moves.push(p.tilt > 0 ? "Tilt Up" : "Tilt Down");
+                        if (p.roll !== 0) moves.push("Dutch Angle");
+                        motionParts.push(`Camera-driven movement: Slow, majestic ${moves.join(' and ')} revealing the horizon.`);
+                    } else if (hVal !== null && hVal !== 0) {
+                         motionParts.push(`Camera-driven orbit: Smoothly orbiting ${Math.abs(hVal)} degrees.`);
+                    } else {
+                        motionParts.push("Camera-driven: Static atmospheric shot.");
+                    }
+                    motionParts.push("No rapid cuts. Subject (if any) remains stationary.");
+                } 
+                else if (p.mode === 'object' || p.mode === 'living') {
+                    if (isSubRot) {
+                        // Type B: Subject Moves, Camera Static
+                        motionParts.push("Camera remains fixed on a static tripod.");
+                        motionParts.push(`Subject-driven rotation: The object/subject spins ${p.subjectRot} degrees on its central axis.`);
+                    } else {
+                        // Type A: Subject Static, Camera Moves
+                        motionParts.push("Subject remains static/stationary.");
+                        let moves = [];
+                        if (hVal !== null && hVal !== 0) moves.push(`Orbit ${Math.abs(hVal)} degrees`);
+                        if (p.pan !== 0) moves.push(p.pan === -1 ? "Pan Left" : "Pan Right");
+                        if (p.tilt !== 0) moves.push(p.tilt > 0 ? "Tilt Up" : "Tilt Down");
+                        
+                        if (moves.length > 0) {
+                            motionParts.push(`Camera-driven movement: ${moves.join(', ')}.`);
+                        } else {
+                            motionParts.push("Static Camera.");
+                        }
+                    }
+                }
+
+                // 3. [Optical Effect] - UPDATED STRINGS
+                let optical = "";
+                if (p.mode === 'environment') {
+                    optical = "[Optical & Environment]: Photorealistic spatial rendering. Physically accurate Global Illumination (GI) and light transport. High Dynamic Range (HDR) imaging. Accurate spatial depth and dimensionality. 16K ultra-resolution, true-to-life environmental textures.";
+                }
+                if (p.mode === 'object') {
+                    optical = "[Optical & Lighting]: Cinematic grade lighting quality. High Dynamic Range (HDR) with broad tonal range. Physically accurate light transport (Global Illumination/Ray-tracing). 16K ultra-resolution, hyper-realistic rendering.";
+                }
+                if (p.mode === 'living') {
+                    optical = "[Optical & Biome Physics]: Hyper-realistic organic rendering. Physically accurate Subsurface Scattering (SSS) for light absorption and translucency. Intricate biological surface details (micro-displacement for scales/pores/fibers). 16K ultra-resolution, cinema-grade color grading with broad dynamic range.";
+                }
+                // Append Lens FX
+                if(distData.parallax) optical += " " + distData.parallax;
+
+                // 4. [Environmental Lock] - UPDATED ANCHORS
+                let lock = "";
+                if (p.mode === 'environment') {
+                    lock = "[Environmental Lock]: Reference-grounded spatial anchoring. Maintain architectural layout and object coordinates strictly from primary source. Static Global Illumination (GI) inherited from reference light transport. Material persistence across all viewports. Seamless environmental extension extrapolated from reference textures.";
+                }
+                else if (p.mode === 'object') {
+                    if (isSubRot) {
+                         // Type B
+                         lock = "[Environmental Lock]: Reference-locked Static Plate. Zero camera translation/rotation. Frozen environmental lighting sourced from reference. Dynamic Object Transformation: Only the subject (product) undergoes motion. Physically accurate shadow interaction mapped to reference surface properties.";
+                    } else {
+                         // Type A
+                         lock = "[Environmental Lock]: Source-derived Spatial Anchor. Fixed object-to-ground coordinates matched to reference. Static Global Illumination (GI) rig locked to reference image lighting. 3D Scene Consistency: Maintain parallax accuracy between product and background based on reference geometry. Locked material shaders for product surface.";
+                    }
+                }
+                else if (p.mode === 'living') {
+                     if (isSubRot) {
+                         // Type B
+                         lock = "[Subject Identity Lock]: Source-anchored identity markers. Kinematic identity preservation. Consistent musculature deformation aligned with reference anatomy. Locked specific identity markers (scars, freckles, pattern layout) cloned from reference image. Deformation-invariant textures: skin/fur details must scale realistically without deviating from source resolution.";
+                     } else {
+                         // Type A
+                         lock = "[Subject Identity Lock]: Reference-based biometric anchoring. Absolute anatomical consistency adhering to source image. Locked micro-facial details (pores, follicles) extracted from reference. 360-degree volume mapping: maintain distinctive jawline and cranial structure consistent with source profile. Zero-drift on skin pigment and hair grooming.";
+                     }
+                }
+
+                return `[Core Setup]: ${coreParts.join('. ')}.\n[Primary Motion]: ${motionParts.join(' ')}\n${optical}\n${lock}`;
             });
 
             // --- Three.js Logic ---
             let scene, camera, renderer, pipRenderer, controls, pipCamera, composer, subjectMesh, cameraRigGroup, cameraModel, matrixGroup, masterMiniCamera;
             let currentSubjectHeight = 2.0;
             let isDragging = false;
-            let dragMode = null; // 'orbit', 'subject', 'camera'
+            let dragMode = null; 
             let raycaster = new THREE.Raycaster();
             let mouse = new THREE.Vector2();
             let dragPlane;
-            
-            // Accumulators for snapping logic
             let dragAccumulatorX = 0;
             let dragAccumulatorY = 0;
             const SNAP_THRESHOLD_X = 30; 
             const SNAP_THRESHOLD_Y = 30; 
             const SNAP_THRESHOLD_ROT = 40; 
 
-            // --- Setup Helpers ---
+            // --- Setup Helpers (Drag & Drop Fixed) ---
             const handleImageUpload = (e) => { const file = e.target.files[0]; if(file) processFile(file); };
-            const handleDrop = (e) => { isDraggingOver.value = false; const file = e.dataTransfer.files[0]; if(file && file.type.startsWith('image/')) processFile(file); };
+            
+            const handleDragEnter = () => { isDraggingOver.value = true; };
+            const handleDragLeave = (e) => { if (!e.currentTarget.contains(e.relatedTarget)) isDraggingOver.value = false; };
+            const handleDrop = (e) => { 
+                isDraggingOver.value = false; 
+                const file = e.dataTransfer.files[0]; 
+                if(file && file.type.startsWith('image/')) processFile(file); 
+            };
+
             const processFile = (file) => { const reader = new FileReader(); reader.onload = (ev) => { imagePreview.value = ev.target.result; hasImage.value = true; updateTexture(ev.target.result); }; reader.readAsDataURL(file); };
             const clearImage = () => { hasImage.value = false; imagePreview.value = null; updateTexture(null); document.getElementById('fileInput').value = ""; };
             const copyPrompt = () => { if(!generatedPrompt.value) return; const ta = document.createElement('textarea'); ta.value = generatedPrompt.value; document.body.appendChild(ta); ta.select(); document.execCommand('copy'); document.body.removeChild(ta); copied.value = true; setTimeout(()=>copied.value=false, 2000); };
 
+            // ... (Three.js Helper Functions - same as before) ...
             const addGlowOutline = (mesh, color = 0x00ffff) => {
                 const edges = new THREE.EdgesGeometry(mesh.geometry);
                 const lineMat = new THREE.LineBasicMaterial({ color: color, transparent: true, opacity: 1.0, blending: THREE.AdditiveBlending });
@@ -593,101 +772,48 @@
                 const pipDiv = document.getElementById('pip-canvas');
                 scene = new THREE.Scene(); scene.background = new THREE.Color(0x050505);
                 scene.add(new THREE.GridHelper(20, 20, 0x333333, 0x1a1a1a));
-                
-                camera = new THREE.PerspectiveCamera(45, container.clientWidth/container.clientHeight, 0.1, 1000);
-                camera.position.set(6, 4, 8);
-                
+                camera = new THREE.PerspectiveCamera(45, container.clientWidth/container.clientHeight, 0.1, 1000); camera.position.set(6, 4, 8);
                 pipCamera = new THREE.PerspectiveCamera(50, pipDiv.clientWidth/pipDiv.clientHeight, 0.1, 100);
-                
-                renderer = new THREE.WebGLRenderer({antialias:true});
-                renderer.setSize(container.clientWidth, container.clientHeight);
-                renderer.toneMapping = THREE.ReinhardToneMapping;
-                container.appendChild(renderer.domElement);
-                
-                pipRenderer = new THREE.WebGLRenderer({antialias:true});
-                pipRenderer.setSize(pipDiv.clientWidth, pipDiv.clientHeight);
-                pipDiv.appendChild(pipRenderer.domElement);
-
-                scene.add(new THREE.AmbientLight(0xffffff, 0.3));
-                const dir = new THREE.DirectionalLight(0xffffff, 0.8); dir.position.set(5,10,5); scene.add(dir);
-                
-                const renderScene = new RenderPass(scene, camera);
-                const bloomPass = new UnrealBloomPass(new THREE.Vector2(container.clientWidth, container.clientHeight), 1.5, 0.4, 0.85);
-                bloomPass.threshold = 0.6; bloomPass.strength = 1.0; bloomPass.radius = 0.8;
+                renderer = new THREE.WebGLRenderer({antialias:true}); renderer.setSize(container.clientWidth, container.clientHeight); renderer.toneMapping = THREE.ReinhardToneMapping; container.appendChild(renderer.domElement);
+                pipRenderer = new THREE.WebGLRenderer({antialias:true}); pipRenderer.setSize(pipDiv.clientWidth, pipDiv.clientHeight); pipDiv.appendChild(pipRenderer.domElement);
+                scene.add(new THREE.AmbientLight(0xffffff, 0.3)); const dir = new THREE.DirectionalLight(0xffffff, 0.8); dir.position.set(5,10,5); scene.add(dir);
+                const renderScene = new RenderPass(scene, camera); const bloomPass = new UnrealBloomPass(new THREE.Vector2(container.clientWidth, container.clientHeight), 1.5, 0.4, 0.85); bloomPass.threshold = 0.6; bloomPass.strength = 1.0; bloomPass.radius = 0.8;
                 composer = new EffectComposer(renderer); composer.addPass(renderScene); composer.addPass(bloomPass); composer.addPass(new OutputPass());
-
-                subjectMesh = new THREE.Mesh(new THREE.PlaneGeometry(1,1), new THREE.MeshStandardMaterial({color:0x888888, side:THREE.DoubleSide, transparent:true}));
-                subjectMesh.scale.set(1.5, 2, 1); subjectMesh.position.y = 1; scene.add(subjectMesh);
-                subjectMesh.userData = { isSubject: true };
-
-                cameraRigGroup = new THREE.Group(); scene.add(cameraRigGroup);
-                createCameraModel();
-                masterMiniCamera = createMasterMiniCamera();
-                matrixGroup = new THREE.Group(); scene.add(matrixGroup);
-
-                controls = new OrbitControls(camera, renderer.domElement);
-                controls.enableDamping = true;
-                
-                dragPlane = new THREE.Mesh(new THREE.PlaneGeometry(100,100), new THREE.MeshBasicMaterial({visible:false})); 
-                dragPlane.rotation.x = -Math.PI/2; 
-                scene.add(dragPlane);
-
-                const cvs = renderer.domElement;
-                cvs.addEventListener('mousedown', onMouseDown);
-                window.addEventListener('mousemove', onMouseMove);
-                window.addEventListener('mouseup', onMouseUp);
-                window.addEventListener('resize', onWindowResize);
+                subjectMesh = new THREE.Mesh(new THREE.PlaneGeometry(1,1), new THREE.MeshStandardMaterial({color:0x888888, side:THREE.DoubleSide, transparent:true})); subjectMesh.scale.set(1.5, 2, 1); subjectMesh.position.y = 1; scene.add(subjectMesh); subjectMesh.userData = { isSubject: true };
+                cameraRigGroup = new THREE.Group(); scene.add(cameraRigGroup); createCameraModel(); masterMiniCamera = createMasterMiniCamera(); matrixGroup = new THREE.Group(); scene.add(matrixGroup);
+                controls = new OrbitControls(camera, renderer.domElement); controls.enableDamping = true;
+                dragPlane = new THREE.Mesh(new THREE.PlaneGeometry(100,100), new THREE.MeshBasicMaterial({visible:false})); dragPlane.rotation.x = -Math.PI/2; scene.add(dragPlane);
+                const cvs = renderer.domElement; cvs.addEventListener('mousedown', onMouseDown); window.addEventListener('mousemove', onMouseMove); window.addEventListener('mouseup', onMouseUp); window.addEventListener('resize', onWindowResize);
                 animate();
             };
 
             const updateTexture = (url) => {
                 if(!subjectMesh) return;
-                if(url) {
-                    new THREE.TextureLoader().load(url, (tex) => {
-                        tex.colorSpace = THREE.SRGBColorSpace; subjectMesh.material.map = tex; subjectMesh.material.color.setHex(0xffffff); subjectMesh.material.needsUpdate=true;
-                        const asp = tex.image.width / tex.image.height;
-                        if(asp>=1) subjectMesh.scale.set(2, 2/asp, 1); else subjectMesh.scale.set(2*asp, 2, 1);
-                        currentSubjectHeight = subjectMesh.scale.y; subjectMesh.position.y = currentSubjectHeight/2;
-                    });
-                } else {
-                    subjectMesh.material.map = null; subjectMesh.material.color.setHex(0x555555); subjectMesh.scale.set(1.5,2,1); subjectMesh.position.y=1; currentSubjectHeight=2;
-                }
+                if(url) { new THREE.TextureLoader().load(url, (tex) => { tex.colorSpace = THREE.SRGBColorSpace; subjectMesh.material.map = tex; subjectMesh.material.color.setHex(0xffffff); subjectMesh.material.needsUpdate=true; const asp = tex.image.width / tex.image.height; if(asp>=1) subjectMesh.scale.set(2, 2/asp, 1); else subjectMesh.scale.set(2*asp, 2, 1); currentSubjectHeight = subjectMesh.scale.y; subjectMesh.position.y = currentSubjectHeight/2; }); } 
+                else { subjectMesh.material.map = null; subjectMesh.material.color.setHex(0x555555); subjectMesh.scale.set(1.5,2,1); subjectMesh.position.y=1; currentSubjectHeight=2; }
             };
 
             const onMouseDown = (e) => {
                 if(e.button !== 0) return;
-                const rect = renderer.domElement.getBoundingClientRect();
-                mouse.x = ((e.clientX - rect.left)/rect.width)*2-1; 
-                mouse.y = -((e.clientY - rect.top)/rect.height)*2+1;
-                raycaster.setFromCamera(mouse, camera);
+                const rect = renderer.domElement.getBoundingClientRect(); mouse.x = ((e.clientX - rect.left)/rect.width)*2-1; mouse.y = -((e.clientY - rect.top)/rect.height)*2+1; raycaster.setFromCamera(mouse, camera);
+                const hitCam = raycaster.intersectObjects(cameraRigGroup.children, true).find(o=>o.object.userData.isCamera); const hitSub = raycaster.intersectObjects([subjectMesh], false).length > 0;
                 
-                const hitCam = raycaster.intersectObjects(cameraRigGroup.children, true).find(o=>o.object.userData.isCamera);
-                const hitSub = raycaster.intersectObjects([subjectMesh], false).length > 0;
-                
-                if (hitCam) {
-                    dragMode = 'camera'; isDragging = true; controls.enabled = false;
-                    document.getElementById('canvas-container').classList.add('dragging');
-                } else if (hitSub) {
-                    dragMode = 'subject'; isDragging = true; controls.enabled = false;
-                    document.getElementById('canvas-container').classList.add('dragging');
-                } else {
-                    dragMode = null; isDragging = false; controls.enabled = true;
-                }
+                // Logic Lock Check for Dragging
+                if (params.value.mode === 'environment' && hitSub) return;
+                if (isSubjectRotating.value && hitCam) return;
+
+                if (hitCam) { dragMode = 'camera'; isDragging = true; controls.enabled = false; document.getElementById('canvas-container').classList.add('dragging'); } 
+                else if (hitSub) { dragMode = 'subject'; isDragging = true; controls.enabled = false; document.getElementById('canvas-container').classList.add('dragging'); } 
+                else { dragMode = null; isDragging = false; controls.enabled = true; }
                 dragAccumulatorX = 0; dragAccumulatorY = 0;
             };
 
             const onMouseMove = (e) => {
                 const container = document.getElementById('canvas-container');
                 if (!isDragging) {
-                    const rect = renderer.domElement.getBoundingClientRect();
-                    mouse.x = ((e.clientX - rect.left)/rect.width)*2-1; 
-                    mouse.y = -((e.clientY - rect.top)/rect.height)*2+1;
-                    raycaster.setFromCamera(mouse, camera);
-                    const hitCam = raycaster.intersectObjects(cameraRigGroup.children, true).find(o=>o.object.userData.isCamera);
-                    const hitSub = raycaster.intersectObjects([subjectMesh], false).length > 0;
-                    if (hitCam) { container.classList.add('hover-camera'); container.classList.remove('hover-subject'); } 
-                    else if (hitSub) { container.classList.add('hover-subject'); container.classList.remove('hover-camera'); } 
-                    else { container.classList.remove('hover-camera'); container.classList.remove('hover-subject'); }
+                    const rect = renderer.domElement.getBoundingClientRect(); mouse.x = ((e.clientX - rect.left)/rect.width)*2-1; mouse.y = -((e.clientY - rect.top)/rect.height)*2+1; raycaster.setFromCamera(mouse, camera);
+                    const hitCam = raycaster.intersectObjects(cameraRigGroup.children, true).find(o=>o.object.userData.isCamera); const hitSub = raycaster.intersectObjects([subjectMesh], false).length > 0;
+                    if (hitCam) { container.classList.add('hover-camera'); container.classList.remove('hover-subject'); } else if (hitSub) { container.classList.add('hover-subject'); container.classList.remove('hover-camera'); } else { container.classList.remove('hover-camera'); container.classList.remove('hover-subject'); }
                     return;
                 }
                 if (isDragging) {
@@ -695,22 +821,37 @@
                     if (dragMode === 'camera') {
                         if (Math.abs(dragAccumulatorX) > SNAP_THRESHOLD_X) {
                             const steps = Math.floor(Math.abs(dragAccumulatorX) / SNAP_THRESHOLD_X) * Math.sign(dragAccumulatorX);
-                            let newIdx = horizontalIndex.value + steps;
-                            if (newIdx >= horizontalSteps.length) newIdx = 0; if (newIdx < 0) newIdx = horizontalSteps.length - 1;
-                            horizontalIndex.value = newIdx; dragAccumulatorX = 0;
+                            
+                            // 3D Drag Skipping N/A Logic (0 index)
+                            let currentIdx = params.value.horizontalIndex;
+                            if (currentIdx === 0) currentIdx = 7; // Default start at Front (7) if N/A
+                            let newIdx = currentIdx + steps;
+                            
+                            // Wrap logic skipping 0 (1-13)
+                            if (newIdx > 13) newIdx = 1;
+                            if (newIdx < 1) newIdx = 13;
+                            
+                            params.value.horizontalIndex = newIdx; 
+                            dragAccumulatorX = 0;
                         }
                         if (Math.abs(dragAccumulatorY) > SNAP_THRESHOLD_Y) {
-                            const steps = Math.floor(Math.abs(dragAccumulatorY) / SNAP_THRESHOLD_Y) * Math.sign(dragAccumulatorY);
-                            let newVIdx = params.value.angleIndex - steps;
-                            if (newVIdx < 0) newVIdx = 0; if (newVIdx >= angleLevels.length) newVIdx = angleLevels.length - 1;
+                            const steps = Math.floor(Math.abs(dragAccumulatorY) / SNAP_THRESHOLD_Y) * Math.sign(dragAccumulatorY); let newVIdx = params.value.angleIndex - steps;
+                            
+                            // N/A protection for Vertical Drag
+                            // If current is N/A(0), start from Level(6).
+                            // Clamp range to 1..10 (skip N/A)
+                            let currentV = params.value.angleIndex === 0 ? 6 : params.value.angleIndex;
+                            newVIdx = currentV - steps;
+                            
+                            if (newVIdx < 1) newVIdx = 1; // Limit to Nadir
+                            if (newVIdx >= angleLevels.length) newVIdx = angleLevels.length - 1; 
+                            
                             params.value.angleIndex = newVIdx; dragAccumulatorY = 0;
                         }
                     } else if (dragMode === 'subject') {
                         if (Math.abs(dragAccumulatorX) > SNAP_THRESHOLD_ROT) {
-                            const steps = Math.floor(Math.abs(dragAccumulatorX) / SNAP_THRESHOLD_ROT) * Math.sign(dragAccumulatorX);
-                            let newRot = params.value.subjectRot + (steps * 45);
-                            if (newRot > 180) newRot = 180; if (newRot < -180) newRot = -180;
-                            params.value.subjectRot = newRot; dragAccumulatorX = 0;
+                            const steps = Math.floor(Math.abs(dragAccumulatorX) / SNAP_THRESHOLD_ROT) * Math.sign(dragAccumulatorX); let newRot = params.value.subjectRot + (steps * 45);
+                            if (newRot > 180) newRot = 180; if (newRot < -180) newRot = -180; params.value.subjectRot = newRot; dragAccumulatorX = 0;
                         }
                     }
                 }
@@ -722,88 +863,67 @@
                 if(!subjectMesh || !cameraRigGroup) return;
                 subjectMesh.rotation.y = THREE.MathUtils.degToRad(params.value.subjectRot);
                 const centerY = currentSubjectHeight / 2;
+                
+                const distIdx = params.value.distanceIndex === 0 ? 7 : params.value.distanceIndex;
+                const r = distanceLevels[distIdx].radius;
 
-                const r = distanceLevels[params.value.distanceIndex].radius;
-                const phi = THREE.MathUtils.degToRad(angleLevels[params.value.angleIndex].phi);
-                const theta = THREE.MathUtils.degToRad(params.value.horizontal);
-                const hOffset = heightLevels[params.value.heightIndex].yOffset;
+                const angIdx = params.value.angleIndex === 0 ? 6 : params.value.angleIndex;
+                const phi = THREE.MathUtils.degToRad(angleLevels[angIdx].phi);
+
+                const hVal = horizontalSteps[params.value.horizontalIndex];
+                const hDeg = hVal === null ? 0 : hVal;
+                const theta = THREE.MathUtils.degToRad(hDeg);
+
+                const hgtIdx = params.value.heightIndex === 0 ? 5 : params.value.heightIndex;
+                const hOffset = heightLevels[hgtIdx].yOffset;
 
                 const x = r * Math.sin(phi) * Math.sin(theta);
                 const z = r * Math.sin(phi) * Math.cos(theta);
                 const yAngle = r * Math.cos(phi) + centerY;
                 const finalY = yAngle + (hOffset - 1.6); 
-
                 cameraRigGroup.position.set(x, finalY, z);
+                
+                // FIX: Center Lock Logic
+                // Always look at the geometric center of the subject mesh
                 cameraRigGroup.lookAt(0, centerY, 0);
                 
-                // Pan Logic
-                if (params.value.pan !== 0) {
-                    cameraRigGroup.rotateY(THREE.MathUtils.degToRad(params.value.pan * -15)); 
-                }
-
+                if (params.value.pan !== 0) cameraRigGroup.rotateY(THREE.MathUtils.degToRad(params.value.pan * -15)); 
                 cameraRigGroup.rotateZ(-THREE.MathUtils.degToRad(params.value.roll));
                 cameraRigGroup.rotateX(THREE.MathUtils.degToRad(-params.value.tilt * 20));
-
-                pipCamera.position.copy(cameraRigGroup.position);
-                pipCamera.quaternion.copy(cameraRigGroup.quaternion);
+                
+                pipCamera.position.copy(cameraRigGroup.position); 
+                pipCamera.quaternion.copy(cameraRigGroup.quaternion); 
+                // Since LookAt points +Z towards target in Obj3D but Camera looks down -Z, rotate 180 Y
+                // This ensures the preview sees exactly what the rig is pointing at
                 pipCamera.rotateY(Math.PI);
                 
-                // Focal Length Logic
                 const fl = focalSteps[params.value.focalIndex];
-                if (fl > 0) {
-                    const sensorHeight = 24; 
-                    const fov = 2 * Math.atan(sensorHeight / (2 * fl)) * (180 / Math.PI);
-                    pipCamera.fov = fov;
-                } else {
-                    pipCamera.fov = 50; 
-                }
+                if (fl > 0) { const sensorHeight = 24; const fov = 2 * Math.atan(sensorHeight / (2 * fl)) * (180 / Math.PI); pipCamera.fov = fov; } else { pipCamera.fov = 50; }
                 pipCamera.updateProjectionMatrix();
-
                 updateMatrixVisuals(0, centerY, 0, r, phi, hOffset);
             };
 
             const updateMatrixVisuals = (cx, cy, cz, r, phi, hOff) => {
                 while(matrixGroup.children.length>0) matrixGroup.remove(matrixGroup.children[0]);
                 if(!matrixMode.value) { cameraModel.visible=true; return; }
-                cameraModel.visible=false;
-                if(!masterMiniCamera) return;
+                cameraModel.visible=false; if(!masterMiniCamera) return;
                 for(let i=0; i<12; i++) {
-                    const ang = THREE.MathUtils.degToRad(i*30);
-                    const c = masterMiniCamera.clone();
-                    const x = r * Math.sin(phi) * Math.sin(ang);
-                    const z = r * Math.sin(phi) * Math.cos(ang);
-                    const y = r * Math.cos(phi) + cy + (hOff - 1.6);
-                    c.position.set(x,y,z);
-                    c.lookAt(cx,cy,cz);
-                    matrixGroup.add(c);
+                    const ang = THREE.MathUtils.degToRad(i*30); const c = masterMiniCamera.clone();
+                    const x = r * Math.sin(phi) * Math.sin(ang); const z = r * Math.sin(phi) * Math.cos(ang); const y = r * Math.cos(phi) + cy + (hOff - 1.6);
+                    c.position.set(x,y,z); c.lookAt(cx,cy,cz); matrixGroup.add(c);
                 }
             };
 
-            const animate = () => {
-                requestAnimationFrame(animate);
-                controls.update(); 
-                updateRig();
-                if(composer) composer.render(); else renderer.render(scene, camera);
-                
-                const v1 = cameraRigGroup.visible; const v2 = matrixGroup.visible;
-                cameraRigGroup.visible=false; matrixGroup.visible=false;
-                pipRenderer.render(scene, pipCamera);
-                cameraRigGroup.visible=v1; matrixGroup.visible=v2;
-            };
-
-            const onWindowResize = () => {
-                const c = document.getElementById('canvas-container');
-                camera.aspect = c.clientWidth/c.clientHeight; camera.updateProjectionMatrix();
-                renderer.setSize(c.clientWidth, c.clientHeight); composer.setSize(c.clientWidth, c.clientHeight);
-            };
+            const animate = () => { requestAnimationFrame(animate); controls.update(); updateRig(); if(composer) composer.render(); else renderer.render(scene, camera); const v1 = cameraRigGroup.visible; const v2 = matrixGroup.visible; cameraRigGroup.visible=false; matrixGroup.visible=false; pipRenderer.render(scene, pipCamera); cameraRigGroup.visible=v1; matrixGroup.visible=v2; };
+            const onWindowResize = () => { const c = document.getElementById('canvas-container'); camera.aspect = c.clientWidth/c.clientHeight; camera.updateProjectionMatrix(); renderer.setSize(c.clientWidth, c.clientHeight); composer.setSize(c.clientWidth, c.clientHeight); };
 
             onMounted(()=>initThreeJS());
 
             return { 
-                matrixMode, params, isDraggingOver,
-                horizontalSteps, horizontalIndex, focalSteps,
+                matrixMode, params, isDraggingOver, isSubjectRotating, setMode, isValActive,
+                horizontalSteps, focalSteps,
                 angleLevels, heightLevels, distanceLevels, 
-                generatedPrompt, hasImage, imagePreview, handleImageUpload, handleDrop, clearImage, copyPrompt, copied, resetAll,
+                generatedPrompt, hasImage, imagePreview, handleImageUpload, handleDrop, handleDragEnter, handleDragLeave, clearImage, copyPrompt, copied, resetAll,
                 getHorizontalLabel, getSubjectRotLabel, getFocalLabel
             };
         }
