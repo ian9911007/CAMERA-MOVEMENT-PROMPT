@@ -261,10 +261,10 @@
                                 <div v-for="i in horizontalSteps.length" :key="i" class="tick"></div>
                             </div>
                             <div class="label-marks">
-                                <span class="slider-label" style="left: 2%">N/A</span>
-                                <span class="slider-label" style="left: 9.5%">L</span>
+                                <span class="slider-label" style="left: 0%">N/A</span>
+                                <span class="slider-label" style="left: 7.7%">L</span>
                                 <span class="slider-label" style="left: 53.8%">FRONT</span>
-                                <span class="slider-label" style="left: 98%">R</span>
+                                <span class="slider-label" style="left: 100%">R</span>
                             </div>
                         </div>
                     </div>
@@ -282,10 +282,10 @@
                                 <div v-for="i in angleLevels.length" :key="i" class="tick"></div>
                             </div>
                             <div class="label-marks">
-                                <span class="slider-label" style="left: 2%">N/A</span>
-                                <span class="slider-label" style="left: 12%">DOWN</span>
-                                <span class="slider-label" style="left: 59.5%">LEVEL</span>
-                                <span class="slider-label" style="left: 98%">UP</span>
+                                <span class="slider-label" style="left: 0%">N/A</span>
+                                <span class="slider-label" style="left: 10%">NADIR</span>
+                                <span class="slider-label" style="left: 60%">LEVEL</span>
+                                <span class="slider-label" style="left: 100%">GOD'S EYE</span>
                             </div>
                         </div>
                     </div>
@@ -303,10 +303,10 @@
                                 <div v-for="i in heightLevels.length" :key="i" class="tick"></div>
                             </div>
                             <div class="label-marks">
-                                <span class="slider-label" style="left: 2%">N/A</span>
-                                <span class="slider-label" style="left: 21%">GND</span>
+                                <span class="slider-label" style="left: 0%">N/A</span>
+                                <span class="slider-label" style="left: 20%">GND</span>
                                 <span class="slider-label" style="left: 60%">HIP</span>
-                                <span class="slider-label" style="left: 98%">EYE</span>
+                                <span class="slider-label" style="left: 100%">EYE</span>
                             </div>
                         </div>
                     </div>
@@ -324,10 +324,10 @@
                                 <div v-for="i in distanceLevels.length" :key="i" class="tick"></div>
                             </div>
                              <div class="label-marks">
-                                <span class="slider-label" style="left: 2%">N/A</span>
-                                <span class="slider-label" style="left: 10.5%">PROBE</span>
-                                <span class="slider-label" style="left: 58%">MED</span>
-                                <span class="slider-label" style="left: 98%">EWS</span>
+                                <span class="slider-label" style="left: 0%">N/A</span>
+                                <span class="slider-label" style="left: 8.3%">PROBE</span>
+                                <span class="slider-label" style="left: 58.3%">MED</span>
+                                <span class="slider-label" style="left: 100%">EWS</span>
                             </div>
                         </div>
                     </div>
@@ -402,8 +402,10 @@
                         <div class="relative h-8">
                             <input type="range" v-model.number="params.subjectRot" min="-180" max="180" step="45"
                                :class="params.subjectRot !== 0 ? 'active-violet' : ''">
-                             <div class="flex justify-between text-[9px] text-gray-600 mt-1 px-1 font-mono w-full select-none">
-                                <span>L</span><span>0</span><span>R</span>
+                            <div class="label-marks">
+                                <span class="slider-label" style="left: 0%">L</span>
+                                <span class="slider-label" style="left: 50%">0</span>
+                                <span class="slider-label" style="left: 100%">R</span>
                             </div>
                         </div>
                     </div>
@@ -492,32 +494,32 @@
 
             const distanceLevels = [
                 { label: "N/A", prompt: null, radius: 4.0 }, 
-                { label: "Probe Lens", prompt: "Probe Lens", radius: 0.5, parallax: "[Parallax]: Background extremely blurred with intense bokeh due to macro depth of field." },
-                { label: "Macro", prompt: "Macro Shot", radius: 0.8, parallax: "[Parallax]: Background becomes an abstract wash of color; depth of field is paper-thin." },
-                { label: "Detail", prompt: "Detail Shot", radius: 1.2, parallax: "[Parallax]: Background details are softened to emphasize foreground texture." },
-                { label: "ECU", prompt: "Extreme Close-Up (ECU)", radius: 1.6, parallax: "[Parallax]: Background compression isolates the facial features completely." },
-                { label: "Close-Up", prompt: "Close-Up (CU)", radius: 2.2, parallax: "[Parallax]: Background blur increases to separate subject from environment." },
-                { label: "MCU", prompt: "Medium Close-Up (MCU)", radius: 3.0, parallax: "[Parallax]: Slight background compression, maintaining focus on expression." },
-                { label: "Medium", prompt: "Medium Shot (MS)", radius: 4.0, parallax: "" }, 
-                { label: "Cowboy", prompt: "Cowboy Shot", radius: 5.5, parallax: "[Parallax]: Background reveals more waist-level environment context." },
-                { label: "MLS", prompt: "Medium Long Shot (MLS)", radius: 6.5, parallax: "[Parallax]: Background elements scale down relative to the subject." },
-                { label: "Full", prompt: "Full Shot", radius: 7.5, parallax: "[Parallax]: Full environmental context visible; ground plane interaction is clear." },
-                { label: "Wide", prompt: "Wide Shot (WS)", radius: 9.0, parallax: "[Parallax]: Significant background expansion; subject is integrated into the scene." },
-                { label: "EWS", prompt: "Extreme Wide Shot (EWS)", radius: 12.0, parallax: "[Parallax]: Background dominates the frame; massive environmental scale." }
+                { label: "Probe Lens", prompt: "Probe Lens", radius: 0.5 },
+                { label: "Macro", prompt: "Macro Shot", radius: 0.8 },
+                { label: "Detail", prompt: "Detail Shot", radius: 1.2 },
+                { label: "ECU", prompt: "Extreme Close-Up (ECU)", radius: 1.6 },
+                { label: "Close-Up", prompt: "Close-Up (CU)", radius: 2.2 },
+                { label: "MCU", prompt: "Medium Close-Up (MCU)", radius: 3.0 },
+                { label: "Medium", prompt: "Medium Shot (MS)", radius: 4.0 }, 
+                { label: "Cowboy", prompt: "Cowboy Shot", radius: 5.5 },
+                { label: "MLS", prompt: "Medium Long Shot (MLS)", radius: 6.5 },
+                { label: "Full", prompt: "Full Shot", radius: 7.5 },
+                { label: "Wide", prompt: "Wide Shot (WS)", radius: 9.0 },
+                { label: "EWS", prompt: "Extreme Wide Shot (EWS)", radius: 12.0 }
             ];
 
             const angleLevels = [
                 { label: "N/A", prompt: null, phi: 90 }, 
-                { label: "Nadir", prompt: "Nadir View", phi: 179, parallax: "[Parallax]: Background becomes the sky/ceiling directly above." },
-                { label: "Undershot", prompt: "Undershot", phi: 160, parallax: "[Parallax]: Steep upward angle, subject towers over the frame." },
-                { label: "Worm's Eye", prompt: "Worm's Eye View", phi: 140, parallax: "[Parallax]: Extreme low perspective looking up; imposing scale." },
-                { label: "Frog's Eye", prompt: "Frog's Eye View", phi: 120, parallax: "[Parallax]: Ground level gaze; floor texture dominant in foreground." },
-                { label: "Low Angle", prompt: "Low Angle Shot", phi: 105, parallax: "[Parallax]: Horizon drops; background reveals more sky/ceiling." },
-                { label: "Level (0°)", prompt: "Eye-Level Shot", phi: 90, parallax: "" }, 
-                { label: "High Angle", prompt: "High Angle Shot", phi: 70, parallax: "[Parallax]: Horizon rises; ground becomes more visible." },
-                { label: "Bird's Eye", prompt: "Bird's Eye View", phi: 45, parallax: "[Parallax]: Elevated view; spatial layout becomes clear." },
-                { label: "Overhead", prompt: "Overhead Shot", phi: 25, parallax: "[Parallax]: Near-vertical view; geometry flattens onto the ground plane." },
-                { label: "God's Eye", prompt: "God's Eye View", phi: 1, parallax: "[Parallax]: Top-down map view; total spatial overview." }
+                { label: "Nadir", prompt: "Nadir View", phi: 179 },
+                { label: "Undershot", prompt: "Undershot", phi: 160 },
+                { label: "Worm's Eye", prompt: "Worm's Eye View", phi: 140 },
+                { label: "Frog's Eye", prompt: "Frog's Eye View", phi: 120 },
+                { label: "Low Angle", prompt: "Low Angle Shot", phi: 105 },
+                { label: "Level (0°)", prompt: "Eye-Level Shot", phi: 90 }, 
+                { label: "High Angle", prompt: "High Angle Shot", phi: 70 },
+                { label: "Bird's Eye", prompt: "Bird's Eye View", phi: 45 },
+                { label: "Overhead", prompt: "Overhead Shot", phi: 25 },
+                { label: "God's Eye", prompt: "God's Eye View", phi: 1 }
             ];
 
             const heightLevels = [
@@ -577,14 +579,14 @@
                 if (h > 0) { 
                     if (absH <= 30) return { view: "Slightly Angled Right", orient: "Subject facing slightly screen-left" };
                     if (absH <= 45) return { view: "3/4 Right View", orient: "Subject facing screen-left" };
-                    if (absH === 60) return { view: "Deep Angled Right View", orient: "Subject facing screen-left" }; // 60 deg specific
+                    if (absH === 60) return { view: "Deep Angled Right View", orient: "Subject facing screen-left" }; 
                     if (absH <= 90) return { view: "Right Profile View", orient: "Subject facing screen-left" };
                     if (absH <= 135) return { view: "Right-Rear View", orient: "Subject facing away to screen-left" };
                     return { view: "Back View", orient: "Subject facing away" };
                 } 
                 if (absH <= 30) return { view: "Slightly Angled Left", orient: "Subject facing slightly screen-right" };
                 if (absH <= 45) return { view: "3/4 Left View", orient: "Subject facing screen-right" };
-                if (absH === 60) return { view: "Deep Angled Left View", orient: "Subject facing screen-right" }; // 60 deg specific
+                if (absH === 60) return { view: "Deep Angled Left View", orient: "Subject facing screen-right" }; 
                 if (absH <= 90) return { view: "Left Profile View", orient: "Subject facing screen-right" };
                 if (absH <= 135) return { view: "Left-Rear View", orient: "Subject facing away to screen-right" };
                 return { view: "Back View", orient: "Subject facing away" };
@@ -610,122 +612,82 @@
                 const p = params.value;
                 const isSubRot = p.subjectRot !== 0;
 
-                // 1. [Core Setup]
-                let coreParts = [];
-                // Lens/Focal (Updated Descriptions)
-                const fl = focalSteps[p.focalIndex];
-                if (fl > 0) {
-                     let desc = "";
-                     if(fl <= 8) desc = "Circular Fisheye lens, extreme spherical distortion";
-                     else if(fl <= 14) desc = "Ultra-Wide Angle, exaggerated perspective";
-                     else if(fl === 16) desc = "Full-Frame Fisheye";
-                     else if(fl <= 35) desc = "Wide Angle lens";
-                     else if(fl === 50) desc = "Standard lens, natural human vision";
-                     else if(fl <= 200) desc = "Short Telephoto, portrait compression";
-                     else desc = "Super Telephoto, extreme spatial compression, flattened depth";
-                     
-                     coreParts.push(`Shot on ${fl}mm (${desc})`);
-                }
+                // [Reference Binding]
+                let refBind = "[Reference Binding]: Use the uploaded reference image as the authoritative spatial, visual, and lighting baseline. All positional relationships, scale, proportions, materials, and lighting behavior originate from the reference image unless explicitly overridden.";
                 
-                // Composition (Skip N/A)
-                const distData = distanceLevels[p.distanceIndex];
-                if(distData.prompt) coreParts.push(distData.prompt);
-
-                const angleData = angleLevels[p.angleIndex];
-                if(angleData.prompt) coreParts.push(angleData.prompt);
-
-                const heightData = heightLevels[p.heightIndex];
-                if(heightData.prompt) coreParts.push(heightData.prompt);
-
-                const horizData = getHorizontalData();
-                if(horizData) coreParts.push(`${horizData.view}, ${horizData.orient}`);
+                // [Target]
+                let target = "";
+                if (p.mode === 'environment') target = "[Target]: Environment";
+                else if (p.mode === 'object') target = "[Target]: Product";
+                else if (p.mode === 'living') target = "[Target]: Character / Creature";
                 
-                // If subject rotating in Obj/Living, force tripod
-                if (p.mode !== 'environment' && isSubRot) {
-                     coreParts.push("Fixed Camera (Tripod)");
-                }
-                
-                // 2. [Primary Motion]
-                let motionParts = [];
-                const hasCamMove = p.pan !== 0 || p.tilt !== 0 || p.roll !== 0;
-                
-                // Horizontal Value for Motion (if not N/A)
-                const hVal = horizontalSteps[p.horizontalIndex];
-
-                if (p.mode === 'environment') {
-                    if (hasCamMove) {
-                        let moves = [];
-                        if (p.pan !== 0) moves.push(p.pan === -1 ? "Pan Left" : "Pan Right");
-                        if (p.tilt !== 0) moves.push(p.tilt > 0 ? "Tilt Up" : "Tilt Down");
-                        if (p.roll !== 0) moves.push("Dutch Angle");
-                        motionParts.push(`Camera-driven movement: Slow, majestic ${moves.join(' and ')} revealing the horizon.`);
-                    } else if (hVal !== null && hVal !== 0) {
-                         motionParts.push(`Camera-driven orbit: Smoothly orbiting ${Math.abs(hVal)} degrees.`);
-                    } else {
-                        motionParts.push("Camera-driven: Static atmospheric shot.");
-                    }
-                    motionParts.push("No rapid cuts. Subject (if any) remains stationary.");
-                } 
-                else if (p.mode === 'object' || p.mode === 'living') {
-                    if (isSubRot) {
-                        // Type B: Subject Moves, Camera Static
-                        motionParts.push("Camera remains fixed on a static tripod.");
-                        motionParts.push(`Subject-driven rotation: The object/subject spins ${p.subjectRot} degrees on its central axis.`);
-                    } else {
-                        // Type A: Subject Static, Camera Moves
-                        motionParts.push("Subject remains static/stationary.");
-                        let moves = [];
-                        if (hVal !== null && hVal !== 0) moves.push(`Orbit ${Math.abs(hVal)} degrees`);
-                        if (p.pan !== 0) moves.push(p.pan === -1 ? "Pan Left" : "Pan Right");
-                        if (p.tilt !== 0) moves.push(p.tilt > 0 ? "Tilt Up" : "Tilt Down");
-                        
-                        if (moves.length > 0) {
-                            motionParts.push(`Camera-driven movement: ${moves.join(', ')}.`);
-                        } else {
-                            motionParts.push("Static Camera.");
-                        }
-                    }
-                }
-
-                // 3. [Optical Effect] - UPDATED STRINGS
-                let optical = "";
-                if (p.mode === 'environment') {
-                    optical = "[Optical & Environment]: Photorealistic spatial rendering. Physically accurate Global Illumination (GI) and light transport. High Dynamic Range (HDR) imaging. Accurate spatial depth and dimensionality. 16K ultra-resolution, true-to-life environmental textures.";
-                }
-                if (p.mode === 'object') {
-                    optical = "[Optical & Lighting]: Cinematic grade lighting quality. High Dynamic Range (HDR) with broad tonal range. Physically accurate light transport (Global Illumination/Ray-tracing). 16K ultra-resolution, hyper-realistic rendering.";
-                }
-                if (p.mode === 'living') {
-                    optical = "[Optical & Biome Physics]: Hyper-realistic organic rendering. Physically accurate Subsurface Scattering (SSS) for light absorption and translucency. Intricate biological surface details (micro-displacement for scales/pores/fibers). 16K ultra-resolution, cinema-grade color grading with broad dynamic range.";
-                }
-                // Append Lens FX
-                if(distData.parallax) optical += " " + distData.parallax;
-
-                // 4. [Environmental Lock] - UPDATED ANCHORS
+                // [Transformation] & [Lock Conditions]
+                let transHeader = "";
+                let transBody = "";
                 let lock = "";
+                
+                // Dynamic Motion Parts
+                let moves = [];
+                const horizData = getHorizontalData();
+                if (horizData) moves.push(`Orbit to ${horizData.view} (${horizData.orient})`);
+                
+                const angleData = angleLevels[p.angleIndex];
+                if (angleData.prompt) moves.push(`Adjust to ${angleData.prompt}`);
+                
+                const heightData = heightLevels[p.heightIndex];
+                if (heightData.prompt) moves.push(`Position at ${heightData.prompt}`);
+                
+                const distData = distanceLevels[p.distanceIndex];
+                if (distData.prompt) moves.push(`Shot size: ${distData.prompt}`);
+                
+                const fl = focalSteps[p.focalIndex];
+                if (fl > 0) moves.push(`Lens: ${fl}mm`);
+
+                if (p.pan !== 0) moves.push(p.pan === -1 ? "Pan Left" : "Pan Right");
+                if (p.tilt !== 0) moves.push(p.tilt > 0 ? "Tilt Up" : "Tilt Down");
+                if (p.roll !== 0) moves.push("Dutch Angle");
+
+
+                // Logic 1: Environment > Camera Move
                 if (p.mode === 'environment') {
-                    lock = "[Environmental Lock]: Reference-grounded spatial anchoring. Maintain architectural layout and object coordinates strictly from primary source. Static Global Illumination (GI) inherited from reference light transport. Material persistence across all viewports. Seamless environmental extension extrapolated from reference textures.";
+                    transHeader = "[Camera Transformation]:";
+                    transBody = "Reposition the camera to a new observational viewpoint. Change framing relative to the referenced environment.";
+                    if (moves.length > 0) transBody += `\n>> ACTION: ${moves.join(', ')}`;
+                    
+                    lock = "[Lock Conditions]: Environment content, object placement, and lighting remain identical to the reference. Only camera position differs.";
                 }
+                
+                // Logic 2/3: Object
                 else if (p.mode === 'object') {
-                    if (isSubRot) {
-                         // Type B
-                         lock = "[Environmental Lock]: Reference-locked Static Plate. Zero camera translation/rotation. Frozen environmental lighting sourced from reference. Dynamic Object Transformation: Only the subject (product) undergoes motion. Physically accurate shadow interaction mapped to reference surface properties.";
-                    } else {
-                         // Type A
-                         lock = "[Environmental Lock]: Source-derived Spatial Anchor. Fixed object-to-ground coordinates matched to reference. Static Global Illumination (GI) rig locked to reference image lighting. 3D Scene Consistency: Maintain parallax accuracy between product and background based on reference geometry. Locked material shaders for product surface.";
+                    if (isSubRot) { // Logic 3: Product Move
+                        transHeader = "[Product Transformation]:";
+                        transBody = "Reorient the product relative to its reference state. Change the product's facing direction.";
+                        transBody += `\n>> ACTION: Subject Rotation ${p.subjectRot} degrees.`;
+                        lock = "[Lock Conditions]: Camera viewpoint and environment background remain identical to the reference image. Only product orientation changes.";
+                    } else { // Logic 2: Camera Move
+                        transHeader = "[Camera Transformation]:";
+                        transBody = "Change camera viewpoint relative to the referenced product. Reframe from a new angle.";
+                        if (moves.length > 0) transBody += `\n>> ACTION: ${moves.join(', ')}`;
+                        lock = "[Lock Conditions]: Product and environment remain identical to the reference image. Only camera perspective differs.";
                     }
                 }
+                
+                // Logic 4/5: Living
                 else if (p.mode === 'living') {
-                     if (isSubRot) {
-                         // Type B
-                         lock = "[Subject Identity Lock]: Source-anchored identity markers. Kinematic identity preservation. Consistent musculature deformation aligned with reference anatomy. Locked specific identity markers (scars, freckles, pattern layout) cloned from reference image. Deformation-invariant textures: skin/fur details must scale realistically without deviating from source resolution.";
-                     } else {
-                         // Type A
-                         lock = "[Subject Identity Lock]: Reference-based biometric anchoring. Absolute anatomical consistency adhering to source image. Locked micro-facial details (pores, follicles) extracted from reference. 360-degree volume mapping: maintain distinctive jawline and cranial structure consistent with source profile. Zero-drift on skin pigment and hair grooming.";
+                     if (isSubRot) { // Logic 5: Action/Gaze Move (Simulated by Rotation slider for now)
+                        transHeader = "[Action Transformation]:";
+                        transBody = "Change the subject's pose, action, or gaze. Maintain subject identity and location.";
+                        transBody += `\n>> ACTION: Subject Rotation ${p.subjectRot} degrees (Simulated Pose Change).`;
+                        lock = "[Lock Conditions]: Camera viewpoint and background elements remain identical to the reference image. Only subject action changes.";
+                     } else { // Logic 4: Camera Move
+                        transHeader = "[Camera Transformation]:";
+                        transBody = "Reposition the camera relative to the subject. Find a new observational angle.";
+                        if (moves.length > 0) transBody += `\n>> ACTION: ${moves.join(', ')}`;
+                        lock = "[Lock Conditions]: Subject pose, expression, and environment remain identical to the reference. Only camera position differs.";
                      }
                 }
 
-                return `[Core Setup]: ${coreParts.join('. ')}.\n[Primary Motion]: ${motionParts.join(' ')}\n${optical}\n${lock}`;
+                return `${refBind}\n\n${target}\n\n${transHeader}\n${transBody}\n\n${lock}`;
             });
 
             // --- Three.js Logic ---
@@ -863,6 +825,10 @@
                 if(!subjectMesh || !cameraRigGroup) return;
                 subjectMesh.rotation.y = THREE.MathUtils.degToRad(params.value.subjectRot);
                 const centerY = currentSubjectHeight / 2;
+                
+                // Get visual values. If N/A (Index 0), fallback to default index for Visuals
+                // Default Visuals: Distance=Medium(Index 7), Angle=Level(Index 6), Height=Eye(Index 5)
+                // Note: Index mapping shifted due to N/A insertion
                 
                 const distIdx = params.value.distanceIndex === 0 ? 7 : params.value.distanceIndex;
                 const r = distanceLevels[distIdx].radius;
