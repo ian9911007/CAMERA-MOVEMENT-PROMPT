@@ -261,10 +261,10 @@
                                 <div v-for="i in horizontalSteps.length" :key="i" class="tick"></div>
                             </div>
                             <div class="label-marks">
-                                <span class="slider-label" style="left: 0%">N/A</span>
-                                <span class="slider-label" style="left: 7.7%">L</span>
+                                <span class="slider-label" style="left: 2%">N/A</span>
+                                <span class="slider-label" style="left: 9.5%">L</span>
                                 <span class="slider-label" style="left: 53.8%">FRONT</span>
-                                <span class="slider-label" style="left: 100%">R</span>
+                                <span class="slider-label" style="left: 98%">R</span>
                             </div>
                         </div>
                     </div>
@@ -282,10 +282,10 @@
                                 <div v-for="i in angleLevels.length" :key="i" class="tick"></div>
                             </div>
                             <div class="label-marks">
-                                <span class="slider-label" style="left: 0%">N/A</span>
-                                <span class="slider-label" style="left: 10%">NADIR</span>
-                                <span class="slider-label" style="left: 60%">LEVEL</span>
-                                <span class="slider-label" style="left: 100%">GOD'S EYE</span>
+                                <span class="slider-label" style="left: 2%">N/A</span>
+                                <span class="slider-label" style="left: 12%">DOWN</span>
+                                <span class="slider-label" style="left: 59.5%">LEVEL</span>
+                                <span class="slider-label" style="left: 98%">UP</span>
                             </div>
                         </div>
                     </div>
@@ -303,10 +303,10 @@
                                 <div v-for="i in heightLevels.length" :key="i" class="tick"></div>
                             </div>
                             <div class="label-marks">
-                                <span class="slider-label" style="left: 0%">N/A</span>
-                                <span class="slider-label" style="left: 20%">GND</span>
+                                <span class="slider-label" style="left: 2%">N/A</span>
+                                <span class="slider-label" style="left: 21%">GND</span>
                                 <span class="slider-label" style="left: 60%">HIP</span>
-                                <span class="slider-label" style="left: 100%">EYE</span>
+                                <span class="slider-label" style="left: 98%">EYE</span>
                             </div>
                         </div>
                     </div>
@@ -324,10 +324,10 @@
                                 <div v-for="i in distanceLevels.length" :key="i" class="tick"></div>
                             </div>
                              <div class="label-marks">
-                                <span class="slider-label" style="left: 0%">N/A</span>
-                                <span class="slider-label" style="left: 8.3%">PROBE</span>
-                                <span class="slider-label" style="left: 58.3%">MED</span>
-                                <span class="slider-label" style="left: 100%">EWS</span>
+                                <span class="slider-label" style="left: 2%">N/A</span>
+                                <span class="slider-label" style="left: 10.5%">PROBE</span>
+                                <span class="slider-label" style="left: 58%">MED</span>
+                                <span class="slider-label" style="left: 98%">EWS</span>
                             </div>
                         </div>
                     </div>
@@ -402,10 +402,8 @@
                         <div class="relative h-8">
                             <input type="range" v-model.number="params.subjectRot" min="-180" max="180" step="45"
                                :class="params.subjectRot !== 0 ? 'active-violet' : ''">
-                            <div class="label-marks">
-                                <span class="slider-label" style="left: 0%">L</span>
-                                <span class="slider-label" style="left: 50%">0</span>
-                                <span class="slider-label" style="left: 100%">R</span>
+                             <div class="flex justify-between text-[9px] text-gray-600 mt-1 px-1 font-mono w-full select-none">
+                                <span>L</span><span>0</span><span>R</span>
                             </div>
                         </div>
                     </div>
@@ -494,32 +492,32 @@
 
             const distanceLevels = [
                 { label: "N/A", prompt: null, radius: 4.0 }, 
-                { label: "Probe Lens", prompt: "Probe Lens", radius: 0.5 },
-                { label: "Macro", prompt: "Macro Shot", radius: 0.8 },
-                { label: "Detail", prompt: "Detail Shot", radius: 1.2 },
-                { label: "ECU", prompt: "Extreme Close-Up (ECU)", radius: 1.6 },
-                { label: "Close-Up", prompt: "Close-Up (CU)", radius: 2.2 },
-                { label: "MCU", prompt: "Medium Close-Up (MCU)", radius: 3.0 },
-                { label: "Medium", prompt: "Medium Shot (MS)", radius: 4.0 }, 
-                { label: "Cowboy", prompt: "Cowboy Shot", radius: 5.5 },
-                { label: "MLS", prompt: "Medium Long Shot (MLS)", radius: 6.5 },
-                { label: "Full", prompt: "Full Shot", radius: 7.5 },
-                { label: "Wide", prompt: "Wide Shot (WS)", radius: 9.0 },
-                { label: "EWS", prompt: "Extreme Wide Shot (EWS)", radius: 12.0 }
+                { label: "Probe Lens", prompt: "Probe Lens", radius: 0.5, parallax: "[Parallax]: Background extremely blurred with intense bokeh due to macro depth of field." },
+                { label: "Macro", prompt: "Macro Shot", radius: 0.8, parallax: "[Parallax]: Background becomes an abstract wash of color; depth of field is paper-thin." },
+                { label: "Detail", prompt: "Detail Shot", radius: 1.2, parallax: "[Parallax]: Background details are softened to emphasize foreground texture." },
+                { label: "ECU", prompt: "Extreme Close-Up (ECU)", radius: 1.6, parallax: "[Parallax]: Background compression isolates the facial features completely." },
+                { label: "Close-Up", prompt: "Close-Up (CU)", radius: 2.2, parallax: "[Parallax]: Background blur increases to separate subject from environment." },
+                { label: "MCU", prompt: "Medium Close-Up (MCU)", radius: 3.0, parallax: "[Parallax]: Slight background compression, maintaining focus on expression." },
+                { label: "Medium", prompt: "Medium Shot (MS)", radius: 4.0, parallax: "" }, 
+                { label: "Cowboy", prompt: "Cowboy Shot", radius: 5.5, parallax: "[Parallax]: Background reveals more waist-level environment context." },
+                { label: "MLS", prompt: "Medium Long Shot (MLS)", radius: 6.5, parallax: "[Parallax]: Background elements scale down relative to the subject." },
+                { label: "Full", prompt: "Full Shot", radius: 7.5, parallax: "[Parallax]: Full environmental context visible; ground plane interaction is clear." },
+                { label: "Wide", prompt: "Wide Shot (WS)", radius: 9.0, parallax: "[Parallax]: Significant background expansion; subject is integrated into the scene." },
+                { label: "EWS", prompt: "Extreme Wide Shot (EWS)", radius: 12.0, parallax: "[Parallax]: Background dominates the frame; massive environmental scale." }
             ];
 
             const angleLevels = [
                 { label: "N/A", prompt: null, phi: 90 }, 
-                { label: "Nadir", prompt: "Nadir View", phi: 179 },
-                { label: "Undershot", prompt: "Undershot", phi: 160 },
-                { label: "Worm's Eye", prompt: "Worm's Eye View", phi: 140 },
-                { label: "Frog's Eye", prompt: "Frog's Eye View", phi: 120 },
-                { label: "Low Angle", prompt: "Low Angle Shot", phi: 105 },
-                { label: "Level (0°)", prompt: "Eye-Level Shot", phi: 90 }, 
-                { label: "High Angle", prompt: "High Angle Shot", phi: 70 },
-                { label: "Bird's Eye", prompt: "Bird's Eye View", phi: 45 },
-                { label: "Overhead", prompt: "Overhead Shot", phi: 25 },
-                { label: "God's Eye", prompt: "God's Eye View", phi: 1 }
+                { label: "Nadir", prompt: "Nadir View", phi: 179, parallax: "[Parallax]: Background becomes the sky/ceiling directly above." },
+                { label: "Undershot", prompt: "Undershot", phi: 160, parallax: "[Parallax]: Steep upward angle, subject towers over the frame." },
+                { label: "Worm's Eye", prompt: "Worm's Eye View", phi: 140, parallax: "[Parallax]: Extreme low perspective looking up; imposing scale." },
+                { label: "Frog's Eye", prompt: "Frog's Eye View", phi: 120, parallax: "[Parallax]: Ground level gaze; floor texture dominant in foreground." },
+                { label: "Low Angle", prompt: "Low Angle Shot", phi: 105, parallax: "[Parallax]: Horizon drops; background reveals more sky/ceiling." },
+                { label: "Level (0°)", prompt: "Eye-Level Shot", phi: 90, parallax: "" }, 
+                { label: "High Angle", prompt: "High Angle Shot", phi: 70, parallax: "[Parallax]: Horizon rises; ground becomes more visible." },
+                { label: "Bird's Eye", prompt: "Bird's Eye View", phi: 45, parallax: "[Parallax]: Elevated view; spatial layout becomes clear." },
+                { label: "Overhead", prompt: "Overhead Shot", phi: 25, parallax: "[Parallax]: Near-vertical view; geometry flattens onto the ground plane." },
+                { label: "God's Eye", prompt: "God's Eye View", phi: 1, parallax: "[Parallax]: Top-down map view; total spatial overview." }
             ];
 
             const heightLevels = [
@@ -574,29 +572,28 @@
                 const h = horizontalSteps[params.value.horizontalIndex];
                 if (h === null) return null; // N/A
                 
-                if (h === 0) return { view: "Frontal View", orient: "Subject facing directly at camera" };
                 const absH = Math.abs(h);
-                if (h > 0) { 
-                    if (absH <= 30) return { view: "Slightly Angled Right", orient: "Subject facing slightly screen-left" };
-                    if (absH <= 45) return { view: "3/4 Right View", orient: "Subject facing screen-left" };
-                    if (absH === 60) return { view: "Deep Angled Right View", orient: "Subject facing screen-left" }; 
-                    if (absH <= 90) return { view: "Right Profile View", orient: "Subject facing screen-left" };
-                    if (absH <= 135) return { view: "Right-Rear View", orient: "Subject facing away to screen-left" };
-                    return { view: "Back View", orient: "Subject facing away" };
-                } 
-                if (absH <= 30) return { view: "Slightly Angled Left", orient: "Subject facing slightly screen-right" };
-                if (absH <= 45) return { view: "3/4 Left View", orient: "Subject facing screen-right" };
-                if (absH === 60) return { view: "Deep Angled Left View", orient: "Subject facing screen-right" }; 
-                if (absH <= 90) return { view: "Left Profile View", orient: "Subject facing screen-right" };
-                if (absH <= 135) return { view: "Left-Rear View", orient: "Subject facing away to screen-right" };
-                return { view: "Back View", orient: "Subject facing away" };
+                const side = h > 0 ? "Right" : (h < 0 ? "Left" : "");
+                let term = "";
+                
+                // Specific Mapping per user request
+                if (absH === 0) term = "Full Frontal";
+                else if (absH === 30) term = "3/4 Front (Narrow)";
+                else if (absH === 45) term = "3/4 Front (Wide)";
+                else if (absH === 60) term = "Deep Three-Quarter";
+                else if (absH === 90) term = "Full Profile";
+                else if (absH === 135) term = "3/4 Rear";
+                else if (absH === 180) term = "Full Back";
+                else term = `${absH}°`; // Fallback
+
+                // Construct full string (e.g., "Right 3/4 Front (Narrow)")
+                if (absH === 0 || absH === 180) return term;
+                return `${side} ${term}`;
             };
             
             const getHorizontalLabel = () => {
-                const h = horizontalSteps[params.value.horizontalIndex];
-                if (h === null) return "N/A";
-                if (h === 0) return "FRONT";
-                return `${Math.abs(h)}° ${h > 0 ? 'R' : 'L'}`;
+                const data = getHorizontalData();
+                return data || "N/A";
             };
             
             const getFocalLabel = () => {
@@ -610,88 +607,93 @@
 
             const generatedPrompt = computed(() => {
                 const p = params.value;
-                const isSubRot = p.subjectRot !== 0;
-
-                // [Reference Binding]
-                let refBind = "[Reference Binding]: Use the uploaded reference image as the authoritative spatial, visual, and lighting baseline. All positional relationships, scale, proportions, materials, and lighting behavior originate from the reference image unless explicitly overridden.";
                 
-                // [Target]
-                let target = "";
-                if (p.mode === 'environment') target = "[Target]: Environment";
-                else if (p.mode === 'object') target = "[Target]: Product";
-                else if (p.mode === 'living') target = "[Target]: Character / Creature";
+                // 1. Context (Updated Logic)
+                let context = "";
                 
-                // [Transformation] & [Lock Conditions]
-                let transHeader = "";
-                let transBody = "";
-                let lock = "";
-                
-                // Dynamic Motion Parts
-                let moves = [];
-                const horizData = getHorizontalData();
-                if (horizData) moves.push(`Orbit to ${horizData.view} (${horizData.orient})`);
-                
-                const angleData = angleLevels[p.angleIndex];
-                if (angleData.prompt) moves.push(`Adjust to ${angleData.prompt}`);
-                
-                const heightData = heightLevels[p.heightIndex];
-                if (heightData.prompt) moves.push(`Position at ${heightData.prompt}`);
-                
-                const distData = distanceLevels[p.distanceIndex];
-                if (distData.prompt) moves.push(`Shot size: ${distData.prompt}`);
-                
-                const fl = focalSteps[p.focalIndex];
-                if (fl > 0) moves.push(`Lens: ${fl}mm`);
-
-                if (p.pan !== 0) moves.push(p.pan === -1 ? "Pan Left" : "Pan Right");
-                if (p.tilt !== 0) moves.push(p.tilt > 0 ? "Tilt Up" : "Tilt Down");
-                if (p.roll !== 0) moves.push("Dutch Angle");
-
-
-                // Logic 1: Environment > Camera Move
                 if (p.mode === 'environment') {
-                    transHeader = "[Camera Transformation]:";
-                    transBody = "Reposition the camera to a new observational viewpoint. Change framing relative to the referenced environment.";
-                    if (moves.length > 0) transBody += `\n>> ACTION: ${moves.join(', ')}`;
-                    
-                    lock = "[Lock Conditions]: Environment content, object placement, and lighting remain identical to the reference. Only camera position differs.";
-                }
-                
-                // Logic 2/3: Object
-                else if (p.mode === 'object') {
-                    if (isSubRot) { // Logic 3: Product Move
-                        transHeader = "[Product Transformation]:";
-                        transBody = "Reorient the product relative to its reference state. Change the product's facing direction.";
-                        transBody += `\n>> ACTION: Subject Rotation ${p.subjectRot} degrees.`;
-                        lock = "[Lock Conditions]: Camera viewpoint and environment background remain identical to the reference image. Only product orientation changes.";
-                    } else { // Logic 2: Camera Move
-                        transHeader = "[Camera Transformation]:";
-                        transBody = "Change camera viewpoint relative to the referenced product. Reframe from a new angle.";
-                        if (moves.length > 0) transBody += `\n>> ACTION: ${moves.join(', ')}`;
-                        lock = "[Lock Conditions]: Product and environment remain identical to the reference image. Only camera perspective differs.";
+                    context = "Environment is static";
+                } else if (p.mode === 'living') {
+                    // Living Mode Logic
+                    if (p.subjectRot !== 0) {
+                        context = `Camera and Environment are static, Living character is rotating ${p.subjectRot} degrees in place`;
+                    } else {
+                        context = "Living character and environment are static";
+                    }
+                } else {
+                    // Object Mode Logic (Default)
+                    if (p.subjectRot !== 0) {
+                        context = `Camera and Environment are static, Product placement is rotating ${p.subjectRot} degrees in place`;
+                    } else {
+                        context = "Product placement and environment are static";
                     }
                 }
+
+                // 2. Azimuth (Updated to use new terms)
+                const azimuthTerm = getHorizontalData();
+                const azimuth = azimuthTerm ? `Camera Position: ${azimuthTerm}` : "";
+
+                // 3. Elevation (Angle)
+                const angleLabelMap = {
+                    "Nadir View": "Nadir",
+                    "Undershot": "Undershot", 
+                    "Worm's Eye View": "Worm's Eye",
+                    "Frog's Eye View": "Frog's Eye",
+                    "Low Angle Shot": "Low Angle",
+                    "Level (0°)": "Eye-level",
+                    "High Angle Shot": "High Angle",
+                    "Bird's Eye View": "Bird's Eye",
+                    "Overhead Shot": "Overhead",
+                    "God's Eye View": "Top-down"
+                };
+                const rawAngleLabel = angleLevels[p.angleIndex].label;
+                let elevation = angleLabelMap[rawAngleLabel] || rawAngleLabel;
+                if (rawAngleLabel === "N/A") elevation = "Eye-level";
                 
-                // Logic 4/5: Living
-                else if (p.mode === 'living') {
-                     if (isSubRot) { // Logic 5: Action/Gaze Move (Simulated by Rotation slider for now)
-                        transHeader = "[Action Transformation]:";
-                        transBody = "Change the subject's pose, action, or gaze. Maintain subject identity and location.";
-                        transBody += `\n>> ACTION: Subject Rotation ${p.subjectRot} degrees (Simulated Pose Change).`;
-                        lock = "[Lock Conditions]: Camera viewpoint and background elements remain identical to the reference image. Only subject action changes.";
-                     } else { // Logic 4: Camera Move
-                        transHeader = "[Camera Transformation]:";
-                        transBody = "Reposition the camera relative to the subject. Find a new observational angle.";
-                        if (moves.length > 0) transBody += `\n>> ACTION: ${moves.join(', ')}`;
-                        lock = "[Lock Conditions]: Subject pose, expression, and environment remain identical to the reference. Only camera position differs.";
-                     }
+                // 4. Height (New)
+                const heightPrompt = heightLevels[p.heightIndex].prompt;
+
+                // 5. Distance (New)
+                const distancePrompt = distanceLevels[p.distanceIndex].prompt;
+
+                // 6. Lens
+                const fl = focalSteps[p.focalIndex];
+                let lens = "Standard lens";
+                if (fl !== 0) {
+                    if (fl === 50) lens = "Standard lens";
+                    else lens = `${fl}mm lens`;
                 }
 
-                return `${refBind}\n\n${target}\n\n${transHeader}\n${transBody}\n\n${lock}`;
+                // 7. Movement (New)
+                let moves = [];
+                if (p.pan === -1) moves.push("Pan Left");
+                if (p.pan === 1) moves.push("Pan Right");
+                if (p.tilt === -1) moves.push("Tilt Down");
+                if (p.tilt === 1) moves.push("Tilt Up");
+                // Updated Roll Logic
+                if (p.roll !== 0) {
+                    const dir = p.roll > 0 ? "Clockwise" : "Counter-Clockwise";
+                    moves.push(`Roll ${dir} ${Math.abs(p.roll)}°`);
+                }
+                
+                const movementStr = moves.length > 0 ? `Camera movement: ${moves.join(", ")}` : "";
+
+                // Construct parts
+                let parts = [
+                    `Reference image context: ${context}`,
+                    azimuth ? `${azimuth} at ${elevation} elevation` : null,
+                    heightPrompt, 
+                    distancePrompt,
+                    lens,
+                    movementStr
+                ];
+
+                // Filter out nulls/empty strings and join
+                return parts.filter(part => part && part.trim() !== "").join(". ") + ".";
             });
 
             // --- Three.js Logic ---
-            let scene, camera, renderer, pipRenderer, controls, pipCamera, composer, subjectMesh, cameraRigGroup, cameraModel, matrixGroup, masterMiniCamera;
+            let scene, camera, renderer, pipRenderer, controls, pipCamera, composer, subjectMesh, cameraRigGroup, cameraModel, matrixGroup, masterMiniCamera, lensHelper;
             let currentSubjectHeight = 2.0;
             let isDragging = false;
             let dragMode = null; 
@@ -742,7 +744,24 @@
                 const renderScene = new RenderPass(scene, camera); const bloomPass = new UnrealBloomPass(new THREE.Vector2(container.clientWidth, container.clientHeight), 1.5, 0.4, 0.85); bloomPass.threshold = 0.6; bloomPass.strength = 1.0; bloomPass.radius = 0.8;
                 composer = new EffectComposer(renderer); composer.addPass(renderScene); composer.addPass(bloomPass); composer.addPass(new OutputPass());
                 subjectMesh = new THREE.Mesh(new THREE.PlaneGeometry(1,1), new THREE.MeshStandardMaterial({color:0x888888, side:THREE.DoubleSide, transparent:true})); subjectMesh.scale.set(1.5, 2, 1); subjectMesh.position.y = 1; scene.add(subjectMesh); subjectMesh.userData = { isSubject: true };
-                cameraRigGroup = new THREE.Group(); scene.add(cameraRigGroup); createCameraModel(); masterMiniCamera = createMasterMiniCamera(); matrixGroup = new THREE.Group(); scene.add(matrixGroup);
+                
+                // Camera Rig setup with invisible helper for correct orientation
+                cameraRigGroup = new THREE.Group(); 
+                scene.add(cameraRigGroup); 
+                createCameraModel(); 
+                
+                // Add a helper object that faces the same way the visual camera model faces
+                // The visual model faces +Z relative to the group
+                // But a real THREE.Camera looks down -Z. 
+                // So we rotate this helper 180 degrees Y so its -Z aligns with the group's +Z
+                lensHelper = new THREE.Object3D();
+                lensHelper.rotation.y = Math.PI; 
+                cameraRigGroup.add(lensHelper);
+
+                masterMiniCamera = createMasterMiniCamera(); 
+                matrixGroup = new THREE.Group(); 
+                scene.add(matrixGroup);
+                
                 controls = new OrbitControls(camera, renderer.domElement); controls.enableDamping = true;
                 dragPlane = new THREE.Mesh(new THREE.PlaneGeometry(100,100), new THREE.MeshBasicMaterial({visible:false})); dragPlane.rotation.x = -Math.PI/2; scene.add(dragPlane);
                 const cvs = renderer.domElement; cvs.addEventListener('mousedown', onMouseDown); window.addEventListener('mousemove', onMouseMove); window.addEventListener('mouseup', onMouseUp); window.addEventListener('resize', onWindowResize);
@@ -826,10 +845,6 @@
                 subjectMesh.rotation.y = THREE.MathUtils.degToRad(params.value.subjectRot);
                 const centerY = currentSubjectHeight / 2;
                 
-                // Get visual values. If N/A (Index 0), fallback to default index for Visuals
-                // Default Visuals: Distance=Medium(Index 7), Angle=Level(Index 6), Height=Eye(Index 5)
-                // Note: Index mapping shifted due to N/A insertion
-                
                 const distIdx = params.value.distanceIndex === 0 ? 7 : params.value.distanceIndex;
                 const r = distanceLevels[distIdx].radius;
 
@@ -857,11 +872,19 @@
                 cameraRigGroup.rotateZ(-THREE.MathUtils.degToRad(params.value.roll));
                 cameraRigGroup.rotateX(THREE.MathUtils.degToRad(-params.value.tilt * 20));
                 
-                pipCamera.position.copy(cameraRigGroup.position); 
-                pipCamera.quaternion.copy(cameraRigGroup.quaternion); 
-                // Since LookAt points +Z towards target in Obj3D but Camera looks down -Z, rotate 180 Y
-                // This ensures the preview sees exactly what the rig is pointing at
-                pipCamera.rotateY(Math.PI);
+                // Update world matrix to get correct position of the helper
+                cameraRigGroup.updateMatrixWorld();
+
+                // Sync PIP camera to the invisible lens helper
+                // This guarantees the camera looks exactly where the rig model is pointing
+                if(lensHelper) {
+                    const worldPos = new THREE.Vector3();
+                    const worldQuat = new THREE.Quaternion();
+                    lensHelper.getWorldPosition(worldPos);
+                    lensHelper.getWorldQuaternion(worldQuat);
+                    pipCamera.position.copy(worldPos);
+                    pipCamera.quaternion.copy(worldQuat);
+                }
                 
                 const fl = focalSteps[params.value.focalIndex];
                 if (fl > 0) { const sensorHeight = 24; const fov = 2 * Math.atan(sensorHeight / (2 * fl)) * (180 / Math.PI); pipCamera.fov = fov; } else { pipCamera.fov = 50; }
